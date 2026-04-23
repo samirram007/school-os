@@ -8,6 +8,8 @@ export async function fetchDocumentService(params?: any) {
     if (!params?.id) {
         return await getData(API_PATH + `/root`)
     }
+    console.log("child called:", API_PATH + `/${params.id}/children`);
+
     return await getData(API_PATH + `/${params.id}/children`)
 }
 export async function storeDocumentService(payload: FormData) {

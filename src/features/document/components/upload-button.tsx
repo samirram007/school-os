@@ -16,6 +16,7 @@ import { Upload, X, File as FileIcon } from "lucide-react"
 import { useUploadDocumentMutation } from "../data/queryOptions"
 import { toast } from "sonner"
 import type { AxiosError } from "axios"
+import { useDocument } from "../contexts/document-context"
 
 export default function UploadButton() {
 
@@ -64,6 +65,7 @@ export default function UploadButton() {
 
 export function DragAndDrop({ setOpen }: { setOpen: (open: boolean) => void }) {
     const mutation = useUploadDocumentMutation()
+    const { currentFolder } = useDocument();
     const inputRef = useRef<HTMLInputElement | null>(null)
     const [dragging, setDragging] = useState(false)
     const [files, setFiles] = useState<File[]>([])
@@ -86,6 +88,7 @@ export function DragAndDrop({ setOpen }: { setOpen: (open: boolean) => void }) {
 
         const formData = new FormData()
         files.forEach((file) => formData.append("files[]", file))
+        formData.append("parentId", currentFolder?.id ? currentFolder.id.toString() : "")
 
         mutation.mutate(formData, {
             onSuccess: () => {

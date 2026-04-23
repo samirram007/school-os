@@ -1,31 +1,28 @@
-import { link } from 'fs';
-import path from 'path';
+
 import { z } from 'zod';
 
 
 
-export const folderSchema = z.object({
-  id: z.number().int().positive().optional(),
-  folderId: z.number().int().positive().optional(),
-  parentId: z.number().int().positive().nullable().optional(),
-})
 
-export type Folder = z.infer<typeof folderSchema>
-export const folderListSchema = z.array(folderSchema)
-export type FolderList = z.infer<typeof folderListSchema>
 
 
 export const documentSchema = z.object({
   id: z.number().int().positive().optional(),
   name: z.string().min(1),
   originalName: z.string().min(1),
-  link: z.string(),
-  path: z.string(),
+  link: z.string().nullish(),
+  path: z.string().nullish(),
   documentType: z.string().refine((val) => ["file", "image", "folder"].includes(val), {
     message: "documentType must be either 'file' or 'folder'",
   }),
-  folderId: z.number().int().positive().optional(),
-  parentId: z.number().int().positive().nullable().optional(),
+  parentId: z.number().int().positive().nullish(),
+  fullPath: z.string().nullish(),
+  parents: z.array(z.object({
+    id: z.number().int().positive(),
+    name: z.string().min(1),
+    parentId: z.number().int().positive().nullable(),
+    originalName: z.string().min(1),
+  })).nullish()
 
 
 
