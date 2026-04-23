@@ -14,13 +14,15 @@ import {
 import { useRef, useState } from "react"
 import { Upload, X, File as FileIcon } from "lucide-react"
 import { useUploadDocumentMutation } from "../data/queryOptions"
+import { toast } from "sonner"
+import type { AxiosError } from "axios"
 
 export default function UploadButton() {
 
-
+    const [open, setOpen] = useState(false)
 
     return (
-        <Sheet>
+        <Sheet open={open} onOpenChange={setOpen} >
             <SheetTrigger asChild>
                 <Button variant="outline" className="inline-flex items-center gap-2 rounded-md bg-linear-to-r from-blue-500 to-purple-500 px-4 py-2 text-sm font-medium text-white 
             cursor-pointer transition hover:bg-linear-to-r
@@ -41,7 +43,7 @@ export default function UploadButton() {
                 <div className="grid flex-1 auto-rows-min gap-6 px-4">
 
 
-                    <DragAndDrop />
+                    <DragAndDrop setOpen={setOpen} />
                 </div>
                 <SheetFooter className="mt-4 flex flex-row justify-end">
                     {/* <Button type="submit">Upload</Button> */}
@@ -60,7 +62,7 @@ export default function UploadButton() {
 
 
 
-export function DragAndDrop() {
+export function DragAndDrop({ setOpen }: { setOpen: (open: boolean) => void }) {
     const mutation = useUploadDocumentMutation()
     const inputRef = useRef<HTMLInputElement | null>(null)
     const [dragging, setDragging] = useState(false)
@@ -85,7 +87,21 @@ export function DragAndDrop() {
         const formData = new FormData()
         files.forEach((file) => formData.append("files[]", file))
 
-        mutation.mutate(formData)
+        mutation.mutate(formData, {
+            onSuccess: () => {
+                setFiles([])
+                toast.success("Files uploaded successfully!")
+                setOpen(false)
+            },
+            onError: (error) => {
+                const err = error as AxiosError<{ message?: string }>
+
+                toast.info(
+                    err.response?.data?.message || "Failed to upload files. Please try again."
+                )
+                //console.error("INSIDE ERROR: Document upload failed:", error)
+            },
+        })
     }
 
     const clearAll = () => setFiles([])

@@ -12,6 +12,8 @@ interface DocumentContextType {
   setOpen: (str: DocumentDialogType | null) => void
   currentRow: Document | null
   setCurrentRow: React.Dispatch<React.SetStateAction<Document | null>>
+  currentFolder: Document | null
+  setCurrentFolder: React.Dispatch<React.SetStateAction<Document | null>>
   keyName: string
 }
 
@@ -24,10 +26,11 @@ interface Props {
 export default function DocumentProvider({ children }: Props) {
   const [open, setOpen] = useDialogState<DocumentDialogType>(null)
   const [currentRow, setCurrentRow] = useState<Document | null>(null)
+  const [currentFolder, setCurrentFolder] = useState<Document | null>(null)
 
 
   return (
-    <DocumentContext value={{ open, setOpen, currentRow, setCurrentRow, keyName: "document" }}>
+    <DocumentContext value={{ open, setOpen, currentRow, setCurrentRow, currentFolder, setCurrentFolder, keyName: "document" }}>
       {children}
     </DocumentContext>
   )

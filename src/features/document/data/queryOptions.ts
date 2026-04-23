@@ -1,16 +1,36 @@
 import { queryOptions, useMutation, useQueryClient } from "@tanstack/react-query"
-import { fetchDocumentService, renameDocumentService, storeDocumentService, updateDocumentService } from "./api"
+import { createFolderService, fetchDocumentService, renameDocumentService, storeDocumentService, updateDocumentService } from "./api"
 import type { DocumentForm } from "./schema"
+
 //queryOptions.ts
 const Key = "documents"
-export const documentQueryOptions = (key: string = Key) => {
+export const documentQueryOptions = (id?: number) => {
+    const isRoot = !id
+
     return queryOptions({
-        queryKey: [key],
-        queryFn: fetchDocumentService,
-        staleTime: 1000 * 60 * 5, // 5 minutes
+      queryKey: ["documents", isRoot ? "root" : "folder", id ?? "root"],
+
+      queryFn: () =>
+          isRoot
+              ? fetchDocumentService()
+              : fetchDocumentService({ id }),
+
+      enabled: isRoot || !!id, // always true, but keeps intent clear
+
+      staleTime: 1000 * 60 * 5,
+      retry: 1,
+  })
+}
+export const documentChildrenQueryOptions = (id?: number) => {
+    return queryOptions({
+        queryKey: ["documents", "folder", id],
+        queryFn: () => fetchDocumentService({ id }),
+        enabled: !!id,
+        staleTime: 1000 * 60 * 5,
         retry: 1,
     })
 }
+
 export function useDocumentMutation() {
     const queryClient = useQueryClient()
 
@@ -60,7 +80,24 @@ export const useUploadDocumentMutation = () => {
             queryClient.invalidateQueries({ queryKey: [Key] })
         },
         onError: (error) => {
-            console.error("Document upload failed:", error)
+            //  toast.error("Failed to upload files. Please try again.")
+            console.error("ERROR: Document upload failed:", error)
+        },
+    })
+}
+export const useCreateFolderMutation = () => {
+    const queryClient = useQueryClient()
+
+    return useMutation({
+        mutationFn: async (payload: any) => {
+            return await createFolderService(payload)
+        },
+        onSuccess: () => {
+            queryClient.invalidateQueries({ queryKey: [Key] })
+        },
+        onError: (error) => {
+            //  toast.error("Failed to upload files. Please try again.")
+            console.error("ERROR: Document upload failed:", error)
         },
     })
 }

@@ -1,3 +1,5 @@
+import { link } from 'fs';
+import path from 'path';
 import { z } from 'zod';
 
 
@@ -15,6 +17,16 @@ export type FolderList = z.infer<typeof folderListSchema>
 
 export const documentSchema = z.object({
   id: z.number().int().positive().optional(),
+  name: z.string().min(1),
+  originalName: z.string().min(1),
+  link: z.string(),
+  path: z.string(),
+  documentType: z.string().refine((val) => ["file", "image", "folder"].includes(val), {
+    message: "documentType must be either 'file' or 'folder'",
+  }),
+  folderId: z.number().int().positive().optional(),
+  parentId: z.number().int().positive().nullable().optional(),
+
 
 
 

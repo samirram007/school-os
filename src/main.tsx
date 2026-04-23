@@ -1,16 +1,17 @@
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 
-import { getRouter } from './router';
-import { RouterProvider } from '@tanstack/react-router';
-import './styles.css'
-import { AuthProvider, useAuth } from './features/auth/contexts/auth-context';
+
+import { AuthProvider } from './features/auth/contexts/auth-context';
 
 import { TanStackQueryProvider } from './integrations/tanstack-query/root-provider';
 import { AppRouter } from './app-router';
 
+import { Toaster } from './components/ui/sonner';
+import './styles.css'
 
-const router = getRouter()
+
+
 
 const rootElement = document.getElementById('app') as HTMLElement
 if (rootElement && !rootElement.innerHTML) {
@@ -19,6 +20,7 @@ if (rootElement && !rootElement.innerHTML) {
     <StrictMode>
       <TanStackQueryProvider>
         <AuthProvider>
+          <Toaster position="top-right" richColors />
           <AppRouter />
         </AuthProvider>
       </TanStackQueryProvider>
