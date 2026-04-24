@@ -1,5 +1,5 @@
 import { queryOptions, useMutation, useQueryClient } from "@tanstack/react-query"
-import { createFolderService, fetchDocumentService, renameDocumentService, storeDocumentService, updateDocumentService } from "./api"
+import { createFolderService, fetchDocumentService, moveDocumentService, renameDocumentService, storeDocumentService, updateDocumentService } from "./api"
 import type { DocumentForm } from "./schema"
 
 //queryOptions.ts
@@ -65,6 +65,21 @@ export const useRenameDocumentMutation = () => {
         },
         onError: (error) => {
             console.error("Document rename failed:", error)
+        },
+    })
+}
+export const useMoveDocumentMutation = () => {
+    const queryClient = useQueryClient()
+
+    return useMutation({
+        mutationFn: async ({ id, parentId }: { id: number, parentId: number }) => {
+            return await moveDocumentService({ id, parentId })
+        },
+        onSuccess: () => {
+            queryClient.invalidateQueries({ queryKey: [Key] })
+        },
+        onError: (error) => {
+            console.error("Document move failed:", error)
         },
     })
 }

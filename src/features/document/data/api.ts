@@ -22,6 +22,10 @@ export async function updateDocumentService(payload: any) {
 export async function renameDocumentService(payload: { id: number, name: string }) {
     return await putData(`${API_PATH}/${payload.id}/rename`, { name: payload.name })
 }
+export async function moveDocumentService(payload: { id: number, parentId: number }) {
+    // console.log("payload", payload);
+    return await putData(`${API_PATH}/${payload.id}/move`, { parentId: payload.parentId })
+}
 export async function createFolderService(payload: { name: string, parentId: number | null }) {
     return await postData(`${API_PATH}/folder`, payload)
 }

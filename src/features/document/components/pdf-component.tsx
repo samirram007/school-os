@@ -5,14 +5,14 @@ import type { Document } from "../data/schema";
 
 import workerSrc from "pdfjs-dist/build/pdf.worker?url";
 import { tr } from "@faker-js/faker";
+import NameComponent from "./name-component";
 
 pdfjs.GlobalWorkerOptions.workerSrc = workerSrc;
 
 type PdfComponentProps = {
     document: Document
-    handleRename: (e: React.FocusEvent<HTMLParagraphElement>) => void
 }
-const PdfComponent = ({ document, handleRename }: PdfComponentProps) => {
+const PdfComponent = ({ document }: PdfComponentProps) => {
     const [open, setOpen] = useState(false);
 
     const fileUrl = `${import.meta.env.VITE_IMAGE_ROOT_PATH || "http://localhost:8000/documents/"}${document.path}`;
@@ -33,20 +33,7 @@ const PdfComponent = ({ document, handleRename }: PdfComponentProps) => {
                     />
                 </div>
 
-                <p
-                    className="mt-2 text-center w-full px-2 text-sm text-muted-foreground truncate whitespace-nowrap overflow-hidden  focus:text-left focus:whitespace-normal focus:overflow-visible"
-                    contentEditable
-                    suppressContentEditableWarning
-                    onBlur={handleRename}
-                    onKeyDown={(e) => {
-                        if (e.key === "Enter") {
-                            e.preventDefault();
-                            (e.target as HTMLParagraphElement).blur();
-                        }
-                    }}
-                >
-                    {document.originalName!}
-                </p>
+                <NameComponent document={document} />
             </div>
 
 

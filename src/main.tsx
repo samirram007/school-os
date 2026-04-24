@@ -20,7 +20,7 @@ if (rootElement && !rootElement.innerHTML) {
     <StrictMode>
       <TanStackQueryProvider>
         <AuthProvider>
-          <Toaster position="top-right" richColors />
+          <Toaster position="bottom-right" richColors />
           <AppRouter />
         </AuthProvider>
       </TanStackQueryProvider>
