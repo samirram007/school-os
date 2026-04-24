@@ -12,7 +12,7 @@ import { useDocument } from "./contexts/document-context";
 import { useMemo } from "react";
 
 
-const fileRootPath = import.meta.env.VITE_IMAGE_ROOT_PATH || "http://localhost:8000/uploads/"
+const fileRootPath = import.meta.env.VITE_IMAGE_ROOT_PATH || "https://backend-api.test"
 export default function DocumentPage() {
     const { currentFolder } = useDocument();
     return (
@@ -36,6 +36,7 @@ export default function DocumentPage() {
 
 const DocumentBodyComponent = () => {
     const { currentFolder } = useDocument();
+    console.log("page : ",currentFolder?.id);
     const fetchedDocuments = useQuery(documentQueryOptions(currentFolder?.id));
     const documents = useMemo(() => fetchedDocuments.data?.data || [], [currentFolder, fetchedDocuments.data]);
     return (
@@ -88,7 +89,6 @@ const DocumentItem = ({ document }: { document: any }) => {
 
 const FolderComponent = ({ document, handleRename }: { document: any, handleRename: (e: React.FocusEvent<HTMLParagraphElement>) => void }) => {
     const { setCurrentFolder } = useDocument();
-    const fetchDocumentsQuery = useQuery(documentChildrenQueryOptions(document.id));
     const handleClick = () => {
 
         setCurrentFolder(document);
@@ -117,6 +117,9 @@ const FolderComponent = ({ document, handleRename }: { document: any, handleRena
 }
 
 const FileComponent = ({ document, handleRename }: { document: any, handleRename: (e: React.FocusEvent<HTMLParagraphElement>) => void }) => {
+
+        console.log("Document: ",document.path)
+
     return (
         <div className=" w-36 border-brounded-sm shadow-sm flex flex-col items-center   rounded-lg border text-center text-sm text-muted-foreground
         hover:inset-2
@@ -124,7 +127,7 @@ const FileComponent = ({ document, handleRename }: { document: any, handleRename
         active:inset-0 active:bg-gray-500/30 active:shadow-inner  active:outline-2 active:outline-offset-2 active:outline-gray-500/30
         ">
 
-            <AppImage src={fileRootPath + document.path} alt={document.originalName} className="h-26 w-full rounded-tl-lg rounded-tr-lg object-cover" />
+            <AppImage src={document.path} alt={document.originalName} className="h-26 w-full rounded-tl-lg rounded-tr-lg object-cover" />
             <p
                 className="mt-2 text-center w-full px-2 text-sm text-muted-foreground truncate whitespace-nowrap overflow-hidden  focus:text-left focus:whitespace-normal focus:overflow-visible"
                 contentEditable

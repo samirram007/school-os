@@ -18,6 +18,7 @@ export default function AppImage({
     fallback = "/images/placeholder.png",
     preview = true,
 }: AppImageProps) {
+
     const [error, setError] = useState(false)
     const [loaded, setLoaded] = useState(false)
     const [open, setOpen] = useState(false)

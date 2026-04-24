@@ -23,6 +23,7 @@ export default defineConfig(({ mode }) => {
           rewrite: (path) => path.replace(/^\/api/, ''), // Optional: removes /api prefix if needed
         },
       },
+      open: true
 
     },
     plugins: [
