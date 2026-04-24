@@ -397,6 +397,7 @@ a {
 }
 .icon-folder {
   color:var(--chart-4);
+   user-select: none;
   background: linear-gradient(135deg, #facc15, #f59e0b);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;

@@ -4,10 +4,10 @@ import { getData, postData, putData } from "@/utils/dataClient"
 
 const API_PATH = "/documents"
 export async function fetchDocumentService(params?: any) {
-    console.log("Fetching:", params);
     if (!params?.id) {
         return await getData(API_PATH + `/root`)
     }
+
     return await getData(API_PATH + `/${params.id}/children`)
 }
 export async function storeDocumentService(payload: FormData) {
@@ -19,6 +19,9 @@ export async function updateDocumentService(payload: any) {
 }
 export async function renameDocumentService(payload: { id: number, name: string }) {
     return await putData(`${API_PATH}/${payload.id}/rename`, { name: payload.name })
+}
+export async function moveDocumentService(payload: { id: number, parentId: number }) {
+    return await putData(`${API_PATH}/${payload.id}/move`, { parentId: payload.parentId })
 }
 export async function createFolderService(payload: { name: string, parentId: number | null }) {
     return await postData(`${API_PATH}/folder`, payload)
