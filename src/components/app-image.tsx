@@ -9,7 +9,7 @@ type AppImageProps = {
     className?: string
     fallback?: string
     preview?: boolean
-    attr?: any
+
 }
 
 export default function AppImage({
@@ -18,12 +18,13 @@ export default function AppImage({
     className,
     fallback = "/images/placeholder.png",
     preview = true,
-    attr
+
 }: AppImageProps) {
 
     const [error, setError] = useState(false)
     const [loaded, setLoaded] = useState(false)
     const [open, setOpen] = useState(false)
+    console.log("src", src);
 
     const finalSrc = error || !src ? fallback : src
 
@@ -57,7 +58,7 @@ export default function AppImage({
                     loading="lazy"
                     onLoad={() => setLoaded(true)}
                     onError={() => setError(true)}
-                    {...attr}
+
                     className={cn(
                         "h-full w-full object-cover transition-all duration-300",
                         loaded ? "opacity-100" : "opacity-0",

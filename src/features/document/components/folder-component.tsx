@@ -6,6 +6,7 @@ import type { DraggableAttributes } from "@dnd-kit/core";
 import NameComponent from "./name-component";
 import folderIcon from '@/assets/folder.png'
 import AppImage from "#/components/app-image";
+import { FolderContextMenu } from "./folder-context-menu";
 
 const FolderComponent = ({
     document,
@@ -25,6 +26,7 @@ const FolderComponent = ({
 
     }
     return (
+        <FolderContextMenu>
         <div className=" w-36 border-brounded-sm shadow-sm flex flex-col items-center   rounded-lg border text-center text-sm text-muted-foreground
         hover:inset-2
         hover:bg-gray-500/20  transition cursor-pointer   pb-2
@@ -51,6 +53,7 @@ const FolderComponent = ({
             /> */}
             <NameComponent document={document} />
         </div>
+        </FolderContextMenu>
     )
 }
 

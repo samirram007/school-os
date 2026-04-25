@@ -9,12 +9,14 @@ import UploadButton from "./components/upload-button";
 
 import NewFolderButton from "./components/new-folder-button";
 import { useDocument } from "./contexts/document-context";
-import { useMemo } from "react";
+import { Suspense, useMemo } from "react";
 import PdfComponent from "./components/pdf-component";
 import FolderComponent from "./components/folder-component";
 import FileComponent from "./components/file-component";
 import { toast } from "sonner";
 import { DndContext, PointerSensor, useDraggable, useDroppable, useSensor, useSensors, type DragEndEvent } from "@dnd-kit/core";
+import { Loader, type Loader2 } from "lucide-react";
+import { BodyContextMenu } from "./components/body-context-menu";
 
 
 const pathSymbol = " > "
@@ -25,16 +27,19 @@ export default function DocumentPage() {
     return (
         <Main className="max-w-full flex flex-1 flex-col gap-4 p-4 pt-0">
             <div className="mb-4 flex flex-wrap items-start justify-between gap-3 rounded-lg border border-slate-200/70 bg-white/80 px-4 py-3 shadow-sm dark:border-white/[0.07] dark:bg-white/5">
-                <div className="space-y-1">
-                    <h2 className="text-2xl font-bold tracking-tight text-slate-900 dark:text-slate-100">Document</h2>
+                <div className="space-y-1 self-center">
+                    {/* <h2 className="text-2xl font-bold tracking-tight text-slate-900 dark:text-slate-100">Document</h2> */}
                     <DoucmentPath />
                 </div>
-                <div>
+                <div className="flex flex-row gap-2">
                     <NewFolderButton />
                     <UploadButton />
                 </div>
             </div>
+            <BodyContextMenu>
+
             <DocumentBodyComponent />
+            </BodyContextMenu>
         </Main>
     )
 }
@@ -114,11 +119,32 @@ const DoucmentPath = () => {
 
 const DocumentBodyComponent = () => {
     const { currentFolder } = useDocument();
-    console.log("page : ",currentFolder?.id);
+    // console.log("page : ",currentFolder?.id);
     const fetchedDocuments = useQuery(documentQueryOptions(currentFolder?.id));
     const documents = useMemo(() => fetchedDocuments.data?.data || [], [currentFolder, fetchedDocuments.data]);
+    // console.log("Docu: ", documents);
+
+
     return (
-        <DocumentGrid documents={documents} />
+        <Suspense fallback={<Loader size={16} className="animate-spin" />}>
+            {(!documents || documents.length == 0) ?
+
+                <div className="min-h-screen h-full flex-1 rounded-xl bg-muted/50 md:min-h-min  " >
+                    <div className="flex flex-row flex-wrap justify-center items-center h-full gap-8 p-8">
+
+
+                        <div className="flex items-center justify-center h-64">
+                            <p className="text-lg text-gray-500 animate-pulse">
+                                No files or folders found
+                            </p>
+                        </div>
+
+                    </div>
+                </div>
+                :
+                <DocumentGrid documents={documents} />
+            }
+        </Suspense>
     )
 }
 type DragData = {
@@ -159,7 +185,7 @@ const DocumentGrid = ({ documents }: { documents: any[] }) => {
 
     return (
         <DndContext sensors={sensors} onDragEnd={handleDragEnd}>
-            <div className="min-h-screen flex-1 rounded-xl bg-muted/50 md:min-h-min  " > 
+            <div className="min-h-screen h-full flex-1 rounded-xl bg-muted/50 md:min-h-min  " > 
                 <div className="flex flex-row flex-wrap gap-8 p-8">
                     {documents.map((document: any) => (
                         <DocumentItem key={document.id} document={document} />

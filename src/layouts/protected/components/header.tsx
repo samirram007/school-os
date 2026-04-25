@@ -4,8 +4,9 @@ import { Link } from "@tanstack/react-router";
 
 import BreadcrumbComponent from "./breadcrumb-component";
 import ProfileComponent from "./profile-component";
-import { DownloadCloud, Folder } from "lucide-react";
-import { Button } from "#/components/ui/button";
+import { Calendar, Folder } from "lucide-react";
+import { IconCalendarFilled, IconFolderFilled } from "@tabler/icons-react";
+
 
 export default function Header() {
     return (
@@ -21,11 +22,15 @@ export default function Header() {
                     <BreadcrumbComponent />
                 </div>
                 <div className="flex items-center gap-2">
-                    <div>
-
-                        <div className="px-3 py-1  text-sm font-medium text-gray-700 hover:text-gradient data-[state=open]:bg-gradient">
+                    <div className="flex flex-row ">
+                        <div className="px-1 py-1  text-sm font-medium text-gray-700 hover:text-gradient data-[state=open]:bg-gradient" aria-label={'Calender'}>
                             <Link to={'/document'} >
-                                <Folder className="mr-1 " size={36} />
+                                <IconCalendarFilled className="mr-1  shadow-2xl " size={36} />
+                            </Link>
+                        </div>
+                        <div className="px-1 py-1  text-sm font-medium text-gray-700 hover:text-gradient data-[state=open]:bg-gradient" aria-label={'Documents'}>
+                            <Link to={'/document'} >
+                                <IconFolderFilled className="mr-1  shadow-2xl " size={36} />
                             </Link>
                         </div>
 
