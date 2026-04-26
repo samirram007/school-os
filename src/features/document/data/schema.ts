@@ -7,7 +7,7 @@ import { z } from 'zod';
 
 
 export const documentSchema = z.object({
-  id: z.number().int().positive().optional(),
+  id: z.number().int().positive(),
   name: z.string().min(1),
   originalName: z.string().min(1),
   link: z.string().nullish(),
@@ -15,18 +15,15 @@ export const documentSchema = z.object({
   documentType: z.string().refine((val) => ["file", "image", "folder"].includes(val), {
     message: "documentType must be either 'file' or 'folder'",
   }),
-  parentId: z.number().int().positive().nullish(),
+  parentId: z.number().int().positive().nullable(),
   fullPath: z.string().nullish(),
   parents: z.array(z.object({
     id: z.number().int().positive(),
     name: z.string().min(1),
     parentId: z.number().int().positive().nullable(),
     originalName: z.string().min(1),
+    depth: z.number().int().nullable()
   })).nullish()
-
-
-
-
 })
 export type Document = z.infer<typeof documentSchema>
 export type RoleDocument = z.infer<typeof documentSchema>

@@ -13,7 +13,8 @@ interface DocumentContextType {
   currentRow: Document | null
   setCurrentRow: React.Dispatch<React.SetStateAction<Document | null>>
   currentFolder: Document | null
-  setCurrentFolder: React.Dispatch<React.SetStateAction<Document | null>>
+  // _setCurrentFolder: React.Dispatch<React.SetStateAction<Document | null>>
+  setCurrentFolder: (document: Document | null) => void 
   keyName: string
 }
 
@@ -26,7 +27,23 @@ interface Props {
 export default function DocumentProvider({ children }: Props) {
   const [open, setOpen] = useDialogState<DocumentDialogType>(null)
   const [currentRow, setCurrentRow] = useState<Document | null>(null)
-  const [currentFolder, setCurrentFolder] = useState<Document | null>(null)
+  const [currentFolder, _setCurrentFolder] = useState<Document | null>(() => {
+    try {
+      const raw = localStorage.getItem("currentFolder");
+      return raw ? (JSON.parse(raw) as Document) : null;
+    } catch {
+      return null;
+    }
+  });
+  const setCurrentFolder = (document: Document | null) => {
+    if (!document) {
+      _setCurrentFolder(null)
+      localStorage.removeItem('currentFolder')
+      return
+    }
+    _setCurrentFolder(document)
+    localStorage.setItem('currentFolder', JSON.stringify(document))
+  }
 
 
   return (
