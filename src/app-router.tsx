@@ -1,5 +1,5 @@
 import { RouterProvider } from "@tanstack/react-router";
-import { useAuth } from "./features/auth/contexts/auth-context";
+import { useAuth } from "./features/base-modules/auth/contexts/auth-context";
 import * as TanstackQuery from './integrations/tanstack-query/root-provider';
 import { getRouter } from "./router";
 import LoadingBar from "react-top-loading-bar";

@@ -1,5 +1,5 @@
 import { redirect } from '@tanstack/react-router';
-import { useAuth } from '../features/auth/contexts/auth-context'; // or use session storage
+import { useAuth } from '../features/base-modules/auth/contexts/auth-context'; // or use session storage
 import axiosClient from './axios-client';
 import { toast } from 'sonner';
 

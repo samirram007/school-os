@@ -1,7 +1,7 @@
-import DocumentPage from '#/features/document'
-import DocumentProvider from '#/features/document/contexts/document-context'
-import { documentQueryOptions } from '#/features/document/data/queryOptions'
-import { queryOptions } from '@tanstack/react-query'
+import DocumentPage from '#/features/base-modules/document'
+import DocumentProvider from '#/features/base-modules/document/contexts/document-context'
+import { documentQueryOptions } from '#/features/base-modules/document/data/queryOptions'
+
 import { createFileRoute } from '@tanstack/react-router'
 import { Suspense } from 'react'
 

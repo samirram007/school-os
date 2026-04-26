@@ -1,4 +1,4 @@
-import Dashboard from '#/features/modules/dashboard'
+import Dashboard from '#/features/app-modules/dashboard'
 import { createFileRoute } from '@tanstack/react-router'
 
 export const Route = createFileRoute('/_protected/dashboard/')({

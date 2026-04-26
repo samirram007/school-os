@@ -4,8 +4,11 @@ import { Link } from "@tanstack/react-router";
 
 import BreadcrumbComponent from "./breadcrumb-component";
 import ProfileComponent from "./profile-component";
-import { Calendar, Folder } from "lucide-react";
+
 import { IconCalendarFilled, IconFolderFilled } from "@tabler/icons-react";
+import { Search } from "./search";
+import { ThemeSwitch } from "./theme-switch";
+import FiscalYearSelector from "./fiscal-year-selector";
 
 
 export default function Header() {
@@ -22,7 +25,7 @@ export default function Header() {
                     <BreadcrumbComponent />
                 </div>
                 <div className="flex items-center gap-2">
-                    <div className="flex flex-row ">
+                    <div className="flex flex-row gap-2 items-center ">
                         <div className="px-1 py-1  text-sm font-medium text-gray-700 hover:text-gradient data-[state=open]:bg-gradient" aria-label={'Calender'}>
                             <Link to={'/document'} >
                                 <IconCalendarFilled className="mr-1  shadow-2xl " size={36} />
@@ -34,9 +37,10 @@ export default function Header() {
                             </Link>
                         </div>
 
-                        {/* <button className="px-3 py-1 rounded-md bg-gradient-light text-sm font-medium text-gray-700 hover:bg-gradient data-[state=open]:bg-gradient">
-                            Open Document
-                        </button> */}
+                        {/* <Search className='hidden sm:flex' /> */}
+                        <div className='hidden sm:block h-6 w-px bg-slate-300/50 dark:bg-slate-700/50' />
+                        <ThemeSwitch />
+                        <FiscalYearSelector visible={true} />
 
                     </div>
                     <ProfileComponent user={{

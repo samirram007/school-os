@@ -1,4 +1,4 @@
-import SignIn from '@/features/auth/sign-in';
+import SignIn from '#/features/base-modules/auth/sign-in';
 import { createFileRoute, redirect } from '@tanstack/react-router';
 
 export const Route = createFileRoute('/_guest/sign-in')({

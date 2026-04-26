@@ -20,8 +20,32 @@ import { Route as GuestSignInRouteImport } from './routes/_guest/sign-in'
 import { Route as GuestHomeRouteImport } from './routes/_guest/home'
 import { Route as GuestAboutRouteImport } from './routes/_guest/about'
 import { Route as ProtectedUserIndexRouteImport } from './routes/_protected/user/index'
+import { Route as ProtectedMastersIndexRouteImport } from './routes/_protected/masters/index'
 import { Route as ProtectedDocumentIndexRouteImport } from './routes/_protected/document/index'
 import { Route as ProtectedDashboardIndexRouteImport } from './routes/_protected/dashboard/index'
+import { Route as ProtectedauthChangePasswordRouteImport } from './routes/_protected/(auth)/change-password'
+import { Route as ProtectedauthProfileIndexRouteImport } from './routes/_protected/(auth)/profile/index'
+import { Route as ProtectedappMenuIndexRouteImport } from './routes/_protected/(app)/menu/index'
+import { Route as ProtectedMastersOrganizationLayoutRouteImport } from './routes/_protected/masters/organization/_layout'
+import { Route as ProtectedauthUserFiscalYearLayoutRouteImport } from './routes/_protected/(auth)/user-fiscal-year/_layout'
+import { Route as ProtectedMastersOrganizationLayoutIndexRouteImport } from './routes/_protected/masters/organization/_layout/index'
+import { Route as ProtectedauthUserFiscalYearLayoutIndexRouteImport } from './routes/_protected/(auth)/user-fiscal-year/_layout/index'
+import { Route as ProtectedMastersOrganizationLayoutBranchIndexRouteImport } from './routes/_protected/masters/organization/_layout/branch/index'
+import { Route as ProtectedMastersOrganizationLayoutStateLayoutRouteImport } from './routes/_protected/masters/organization/_layout/state/_layout'
+import { Route as ProtectedMastersOrganizationLayoutFiscal_yearLayoutRouteImport } from './routes/_protected/masters/organization/_layout/fiscal_year/_layout'
+import { Route as ProtectedMastersOrganizationLayoutCurrencyLayoutRouteImport } from './routes/_protected/masters/organization/_layout/currency/_layout'
+import { Route as ProtectedMastersOrganizationLayoutCountryLayoutRouteImport } from './routes/_protected/masters/organization/_layout/country/_layout'
+import { Route as ProtectedMastersOrganizationLayoutCompanyLayoutRouteImport } from './routes/_protected/masters/organization/_layout/company/_layout'
+import { Route as ProtectedMastersOrganizationLayoutStateLayoutIndexRouteImport } from './routes/_protected/masters/organization/_layout/state/_layout/index'
+import { Route as ProtectedMastersOrganizationLayoutFiscal_yearLayoutIndexRouteImport } from './routes/_protected/masters/organization/_layout/fiscal_year/_layout/index'
+import { Route as ProtectedMastersOrganizationLayoutCurrencyLayoutIndexRouteImport } from './routes/_protected/masters/organization/_layout/currency/_layout/index'
+import { Route as ProtectedMastersOrganizationLayoutCountryLayoutIndexRouteImport } from './routes/_protected/masters/organization/_layout/country/_layout/index'
+import { Route as ProtectedMastersOrganizationLayoutCompanyLayoutIndexRouteImport } from './routes/_protected/masters/organization/_layout/company/_layout/index'
+import { Route as ProtectedMastersOrganizationLayoutStateLayoutIdRouteImport } from './routes/_protected/masters/organization/_layout/state/_layout/$id'
+import { Route as ProtectedMastersOrganizationLayoutFiscal_yearLayoutIdRouteImport } from './routes/_protected/masters/organization/_layout/fiscal_year/_layout/$id'
+import { Route as ProtectedMastersOrganizationLayoutCurrencyLayoutIdRouteImport } from './routes/_protected/masters/organization/_layout/currency/_layout/$id'
+import { Route as ProtectedMastersOrganizationLayoutCountryLayoutIdRouteImport } from './routes/_protected/masters/organization/_layout/country/_layout/$id'
+import { Route as ProtectedMastersOrganizationLayoutCompanyLayoutIdRouteImport } from './routes/_protected/masters/organization/_layout/company/_layout/$id'
 
 const GuestForgotPasswordLazyRouteImport = createFileRoute(
   '/_guest/forgot-password',
@@ -77,6 +101,11 @@ const ProtectedUserIndexRoute = ProtectedUserIndexRouteImport.update({
   path: '/user/',
   getParentRoute: () => ProtectedRoute,
 } as any)
+const ProtectedMastersIndexRoute = ProtectedMastersIndexRouteImport.update({
+  id: '/masters/',
+  path: '/masters/',
+  getParentRoute: () => ProtectedRoute,
+} as any)
 const ProtectedDocumentIndexRoute = ProtectedDocumentIndexRouteImport.update({
   id: '/document/',
   path: '/document/',
@@ -87,6 +116,145 @@ const ProtectedDashboardIndexRoute = ProtectedDashboardIndexRouteImport.update({
   path: '/dashboard/',
   getParentRoute: () => ProtectedRoute,
 } as any)
+const ProtectedauthChangePasswordRoute =
+  ProtectedauthChangePasswordRouteImport.update({
+    id: '/(auth)/change-password',
+    path: '/change-password',
+    getParentRoute: () => ProtectedRoute,
+  } as any)
+const ProtectedauthProfileIndexRoute =
+  ProtectedauthProfileIndexRouteImport.update({
+    id: '/(auth)/profile/',
+    path: '/profile/',
+    getParentRoute: () => ProtectedRoute,
+  } as any)
+const ProtectedappMenuIndexRoute = ProtectedappMenuIndexRouteImport.update({
+  id: '/(app)/menu/',
+  path: '/menu/',
+  getParentRoute: () => ProtectedRoute,
+} as any)
+const ProtectedMastersOrganizationLayoutRoute =
+  ProtectedMastersOrganizationLayoutRouteImport.update({
+    id: '/masters/organization/_layout',
+    path: '/masters/organization',
+    getParentRoute: () => ProtectedRoute,
+  } as any)
+const ProtectedauthUserFiscalYearLayoutRoute =
+  ProtectedauthUserFiscalYearLayoutRouteImport.update({
+    id: '/(auth)/user-fiscal-year/_layout',
+    path: '/user-fiscal-year',
+    getParentRoute: () => ProtectedRoute,
+  } as any)
+const ProtectedMastersOrganizationLayoutIndexRoute =
+  ProtectedMastersOrganizationLayoutIndexRouteImport.update({
+    id: '/',
+    path: '/',
+    getParentRoute: () => ProtectedMastersOrganizationLayoutRoute,
+  } as any)
+const ProtectedauthUserFiscalYearLayoutIndexRoute =
+  ProtectedauthUserFiscalYearLayoutIndexRouteImport.update({
+    id: '/',
+    path: '/',
+    getParentRoute: () => ProtectedauthUserFiscalYearLayoutRoute,
+  } as any)
+const ProtectedMastersOrganizationLayoutBranchIndexRoute =
+  ProtectedMastersOrganizationLayoutBranchIndexRouteImport.update({
+    id: '/branch/',
+    path: '/branch/',
+    getParentRoute: () => ProtectedMastersOrganizationLayoutRoute,
+  } as any)
+const ProtectedMastersOrganizationLayoutStateLayoutRoute =
+  ProtectedMastersOrganizationLayoutStateLayoutRouteImport.update({
+    id: '/state/_layout',
+    path: '/state',
+    getParentRoute: () => ProtectedMastersOrganizationLayoutRoute,
+  } as any)
+const ProtectedMastersOrganizationLayoutFiscal_yearLayoutRoute =
+  ProtectedMastersOrganizationLayoutFiscal_yearLayoutRouteImport.update({
+    id: '/fiscal_year/_layout',
+    path: '/fiscal_year',
+    getParentRoute: () => ProtectedMastersOrganizationLayoutRoute,
+  } as any)
+const ProtectedMastersOrganizationLayoutCurrencyLayoutRoute =
+  ProtectedMastersOrganizationLayoutCurrencyLayoutRouteImport.update({
+    id: '/currency/_layout',
+    path: '/currency',
+    getParentRoute: () => ProtectedMastersOrganizationLayoutRoute,
+  } as any)
+const ProtectedMastersOrganizationLayoutCountryLayoutRoute =
+  ProtectedMastersOrganizationLayoutCountryLayoutRouteImport.update({
+    id: '/country/_layout',
+    path: '/country',
+    getParentRoute: () => ProtectedMastersOrganizationLayoutRoute,
+  } as any)
+const ProtectedMastersOrganizationLayoutCompanyLayoutRoute =
+  ProtectedMastersOrganizationLayoutCompanyLayoutRouteImport.update({
+    id: '/company/_layout',
+    path: '/company',
+    getParentRoute: () => ProtectedMastersOrganizationLayoutRoute,
+  } as any)
+const ProtectedMastersOrganizationLayoutStateLayoutIndexRoute =
+  ProtectedMastersOrganizationLayoutStateLayoutIndexRouteImport.update({
+    id: '/',
+    path: '/',
+    getParentRoute: () => ProtectedMastersOrganizationLayoutStateLayoutRoute,
+  } as any)
+const ProtectedMastersOrganizationLayoutFiscal_yearLayoutIndexRoute =
+  ProtectedMastersOrganizationLayoutFiscal_yearLayoutIndexRouteImport.update({
+    id: '/',
+    path: '/',
+    getParentRoute: () =>
+      ProtectedMastersOrganizationLayoutFiscal_yearLayoutRoute,
+  } as any)
+const ProtectedMastersOrganizationLayoutCurrencyLayoutIndexRoute =
+  ProtectedMastersOrganizationLayoutCurrencyLayoutIndexRouteImport.update({
+    id: '/',
+    path: '/',
+    getParentRoute: () => ProtectedMastersOrganizationLayoutCurrencyLayoutRoute,
+  } as any)
+const ProtectedMastersOrganizationLayoutCountryLayoutIndexRoute =
+  ProtectedMastersOrganizationLayoutCountryLayoutIndexRouteImport.update({
+    id: '/',
+    path: '/',
+    getParentRoute: () => ProtectedMastersOrganizationLayoutCountryLayoutRoute,
+  } as any)
+const ProtectedMastersOrganizationLayoutCompanyLayoutIndexRoute =
+  ProtectedMastersOrganizationLayoutCompanyLayoutIndexRouteImport.update({
+    id: '/',
+    path: '/',
+    getParentRoute: () => ProtectedMastersOrganizationLayoutCompanyLayoutRoute,
+  } as any)
+const ProtectedMastersOrganizationLayoutStateLayoutIdRoute =
+  ProtectedMastersOrganizationLayoutStateLayoutIdRouteImport.update({
+    id: '/$id',
+    path: '/$id',
+    getParentRoute: () => ProtectedMastersOrganizationLayoutStateLayoutRoute,
+  } as any)
+const ProtectedMastersOrganizationLayoutFiscal_yearLayoutIdRoute =
+  ProtectedMastersOrganizationLayoutFiscal_yearLayoutIdRouteImport.update({
+    id: '/$id',
+    path: '/$id',
+    getParentRoute: () =>
+      ProtectedMastersOrganizationLayoutFiscal_yearLayoutRoute,
+  } as any)
+const ProtectedMastersOrganizationLayoutCurrencyLayoutIdRoute =
+  ProtectedMastersOrganizationLayoutCurrencyLayoutIdRouteImport.update({
+    id: '/$id',
+    path: '/$id',
+    getParentRoute: () => ProtectedMastersOrganizationLayoutCurrencyLayoutRoute,
+  } as any)
+const ProtectedMastersOrganizationLayoutCountryLayoutIdRoute =
+  ProtectedMastersOrganizationLayoutCountryLayoutIdRouteImport.update({
+    id: '/$id',
+    path: '/$id',
+    getParentRoute: () => ProtectedMastersOrganizationLayoutCountryLayoutRoute,
+  } as any)
+const ProtectedMastersOrganizationLayoutCompanyLayoutIdRoute =
+  ProtectedMastersOrganizationLayoutCompanyLayoutIdRouteImport.update({
+    id: '/$id',
+    path: '/$id',
+    getParentRoute: () => ProtectedMastersOrganizationLayoutCompanyLayoutRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -96,9 +264,33 @@ export interface FileRoutesByFullPath {
   '/sign-up': typeof GuestSignUpRoute
   '/api/test': typeof ApiTestRoute
   '/forgot-password': typeof GuestForgotPasswordLazyRoute
+  '/change-password': typeof ProtectedauthChangePasswordRoute
   '/dashboard/': typeof ProtectedDashboardIndexRoute
   '/document/': typeof ProtectedDocumentIndexRoute
+  '/masters/': typeof ProtectedMastersIndexRoute
   '/user/': typeof ProtectedUserIndexRoute
+  '/user-fiscal-year': typeof ProtectedauthUserFiscalYearLayoutRouteWithChildren
+  '/masters/organization': typeof ProtectedMastersOrganizationLayoutRouteWithChildren
+  '/menu/': typeof ProtectedappMenuIndexRoute
+  '/profile/': typeof ProtectedauthProfileIndexRoute
+  '/user-fiscal-year/': typeof ProtectedauthUserFiscalYearLayoutIndexRoute
+  '/masters/organization/': typeof ProtectedMastersOrganizationLayoutIndexRoute
+  '/masters/organization/company': typeof ProtectedMastersOrganizationLayoutCompanyLayoutRouteWithChildren
+  '/masters/organization/country': typeof ProtectedMastersOrganizationLayoutCountryLayoutRouteWithChildren
+  '/masters/organization/currency': typeof ProtectedMastersOrganizationLayoutCurrencyLayoutRouteWithChildren
+  '/masters/organization/fiscal_year': typeof ProtectedMastersOrganizationLayoutFiscal_yearLayoutRouteWithChildren
+  '/masters/organization/state': typeof ProtectedMastersOrganizationLayoutStateLayoutRouteWithChildren
+  '/masters/organization/branch/': typeof ProtectedMastersOrganizationLayoutBranchIndexRoute
+  '/masters/organization/company/$id': typeof ProtectedMastersOrganizationLayoutCompanyLayoutIdRoute
+  '/masters/organization/country/$id': typeof ProtectedMastersOrganizationLayoutCountryLayoutIdRoute
+  '/masters/organization/currency/$id': typeof ProtectedMastersOrganizationLayoutCurrencyLayoutIdRoute
+  '/masters/organization/fiscal_year/$id': typeof ProtectedMastersOrganizationLayoutFiscal_yearLayoutIdRoute
+  '/masters/organization/state/$id': typeof ProtectedMastersOrganizationLayoutStateLayoutIdRoute
+  '/masters/organization/company/': typeof ProtectedMastersOrganizationLayoutCompanyLayoutIndexRoute
+  '/masters/organization/country/': typeof ProtectedMastersOrganizationLayoutCountryLayoutIndexRoute
+  '/masters/organization/currency/': typeof ProtectedMastersOrganizationLayoutCurrencyLayoutIndexRoute
+  '/masters/organization/fiscal_year/': typeof ProtectedMastersOrganizationLayoutFiscal_yearLayoutIndexRoute
+  '/masters/organization/state/': typeof ProtectedMastersOrganizationLayoutStateLayoutIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -108,9 +300,26 @@ export interface FileRoutesByTo {
   '/sign-up': typeof GuestSignUpRoute
   '/api/test': typeof ApiTestRoute
   '/forgot-password': typeof GuestForgotPasswordLazyRoute
+  '/change-password': typeof ProtectedauthChangePasswordRoute
   '/dashboard': typeof ProtectedDashboardIndexRoute
   '/document': typeof ProtectedDocumentIndexRoute
+  '/masters': typeof ProtectedMastersIndexRoute
   '/user': typeof ProtectedUserIndexRoute
+  '/menu': typeof ProtectedappMenuIndexRoute
+  '/profile': typeof ProtectedauthProfileIndexRoute
+  '/user-fiscal-year': typeof ProtectedauthUserFiscalYearLayoutIndexRoute
+  '/masters/organization': typeof ProtectedMastersOrganizationLayoutIndexRoute
+  '/masters/organization/branch': typeof ProtectedMastersOrganizationLayoutBranchIndexRoute
+  '/masters/organization/company/$id': typeof ProtectedMastersOrganizationLayoutCompanyLayoutIdRoute
+  '/masters/organization/country/$id': typeof ProtectedMastersOrganizationLayoutCountryLayoutIdRoute
+  '/masters/organization/currency/$id': typeof ProtectedMastersOrganizationLayoutCurrencyLayoutIdRoute
+  '/masters/organization/fiscal_year/$id': typeof ProtectedMastersOrganizationLayoutFiscal_yearLayoutIdRoute
+  '/masters/organization/state/$id': typeof ProtectedMastersOrganizationLayoutStateLayoutIdRoute
+  '/masters/organization/company': typeof ProtectedMastersOrganizationLayoutCompanyLayoutIndexRoute
+  '/masters/organization/country': typeof ProtectedMastersOrganizationLayoutCountryLayoutIndexRoute
+  '/masters/organization/currency': typeof ProtectedMastersOrganizationLayoutCurrencyLayoutIndexRoute
+  '/masters/organization/fiscal_year': typeof ProtectedMastersOrganizationLayoutFiscal_yearLayoutIndexRoute
+  '/masters/organization/state': typeof ProtectedMastersOrganizationLayoutStateLayoutIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -123,9 +332,33 @@ export interface FileRoutesById {
   '/_guest/sign-up': typeof GuestSignUpRoute
   '/api/test': typeof ApiTestRoute
   '/_guest/forgot-password': typeof GuestForgotPasswordLazyRoute
+  '/_protected/(auth)/change-password': typeof ProtectedauthChangePasswordRoute
   '/_protected/dashboard/': typeof ProtectedDashboardIndexRoute
   '/_protected/document/': typeof ProtectedDocumentIndexRoute
+  '/_protected/masters/': typeof ProtectedMastersIndexRoute
   '/_protected/user/': typeof ProtectedUserIndexRoute
+  '/_protected/(auth)/user-fiscal-year/_layout': typeof ProtectedauthUserFiscalYearLayoutRouteWithChildren
+  '/_protected/masters/organization/_layout': typeof ProtectedMastersOrganizationLayoutRouteWithChildren
+  '/_protected/(app)/menu/': typeof ProtectedappMenuIndexRoute
+  '/_protected/(auth)/profile/': typeof ProtectedauthProfileIndexRoute
+  '/_protected/(auth)/user-fiscal-year/_layout/': typeof ProtectedauthUserFiscalYearLayoutIndexRoute
+  '/_protected/masters/organization/_layout/': typeof ProtectedMastersOrganizationLayoutIndexRoute
+  '/_protected/masters/organization/_layout/company/_layout': typeof ProtectedMastersOrganizationLayoutCompanyLayoutRouteWithChildren
+  '/_protected/masters/organization/_layout/country/_layout': typeof ProtectedMastersOrganizationLayoutCountryLayoutRouteWithChildren
+  '/_protected/masters/organization/_layout/currency/_layout': typeof ProtectedMastersOrganizationLayoutCurrencyLayoutRouteWithChildren
+  '/_protected/masters/organization/_layout/fiscal_year/_layout': typeof ProtectedMastersOrganizationLayoutFiscal_yearLayoutRouteWithChildren
+  '/_protected/masters/organization/_layout/state/_layout': typeof ProtectedMastersOrganizationLayoutStateLayoutRouteWithChildren
+  '/_protected/masters/organization/_layout/branch/': typeof ProtectedMastersOrganizationLayoutBranchIndexRoute
+  '/_protected/masters/organization/_layout/company/_layout/$id': typeof ProtectedMastersOrganizationLayoutCompanyLayoutIdRoute
+  '/_protected/masters/organization/_layout/country/_layout/$id': typeof ProtectedMastersOrganizationLayoutCountryLayoutIdRoute
+  '/_protected/masters/organization/_layout/currency/_layout/$id': typeof ProtectedMastersOrganizationLayoutCurrencyLayoutIdRoute
+  '/_protected/masters/organization/_layout/fiscal_year/_layout/$id': typeof ProtectedMastersOrganizationLayoutFiscal_yearLayoutIdRoute
+  '/_protected/masters/organization/_layout/state/_layout/$id': typeof ProtectedMastersOrganizationLayoutStateLayoutIdRoute
+  '/_protected/masters/organization/_layout/company/_layout/': typeof ProtectedMastersOrganizationLayoutCompanyLayoutIndexRoute
+  '/_protected/masters/organization/_layout/country/_layout/': typeof ProtectedMastersOrganizationLayoutCountryLayoutIndexRoute
+  '/_protected/masters/organization/_layout/currency/_layout/': typeof ProtectedMastersOrganizationLayoutCurrencyLayoutIndexRoute
+  '/_protected/masters/organization/_layout/fiscal_year/_layout/': typeof ProtectedMastersOrganizationLayoutFiscal_yearLayoutIndexRoute
+  '/_protected/masters/organization/_layout/state/_layout/': typeof ProtectedMastersOrganizationLayoutStateLayoutIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -137,9 +370,33 @@ export interface FileRouteTypes {
     | '/sign-up'
     | '/api/test'
     | '/forgot-password'
+    | '/change-password'
     | '/dashboard/'
     | '/document/'
+    | '/masters/'
     | '/user/'
+    | '/user-fiscal-year'
+    | '/masters/organization'
+    | '/menu/'
+    | '/profile/'
+    | '/user-fiscal-year/'
+    | '/masters/organization/'
+    | '/masters/organization/company'
+    | '/masters/organization/country'
+    | '/masters/organization/currency'
+    | '/masters/organization/fiscal_year'
+    | '/masters/organization/state'
+    | '/masters/organization/branch/'
+    | '/masters/organization/company/$id'
+    | '/masters/organization/country/$id'
+    | '/masters/organization/currency/$id'
+    | '/masters/organization/fiscal_year/$id'
+    | '/masters/organization/state/$id'
+    | '/masters/organization/company/'
+    | '/masters/organization/country/'
+    | '/masters/organization/currency/'
+    | '/masters/organization/fiscal_year/'
+    | '/masters/organization/state/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -149,9 +406,26 @@ export interface FileRouteTypes {
     | '/sign-up'
     | '/api/test'
     | '/forgot-password'
+    | '/change-password'
     | '/dashboard'
     | '/document'
+    | '/masters'
     | '/user'
+    | '/menu'
+    | '/profile'
+    | '/user-fiscal-year'
+    | '/masters/organization'
+    | '/masters/organization/branch'
+    | '/masters/organization/company/$id'
+    | '/masters/organization/country/$id'
+    | '/masters/organization/currency/$id'
+    | '/masters/organization/fiscal_year/$id'
+    | '/masters/organization/state/$id'
+    | '/masters/organization/company'
+    | '/masters/organization/country'
+    | '/masters/organization/currency'
+    | '/masters/organization/fiscal_year'
+    | '/masters/organization/state'
   id:
     | '__root__'
     | '/'
@@ -163,9 +437,33 @@ export interface FileRouteTypes {
     | '/_guest/sign-up'
     | '/api/test'
     | '/_guest/forgot-password'
+    | '/_protected/(auth)/change-password'
     | '/_protected/dashboard/'
     | '/_protected/document/'
+    | '/_protected/masters/'
     | '/_protected/user/'
+    | '/_protected/(auth)/user-fiscal-year/_layout'
+    | '/_protected/masters/organization/_layout'
+    | '/_protected/(app)/menu/'
+    | '/_protected/(auth)/profile/'
+    | '/_protected/(auth)/user-fiscal-year/_layout/'
+    | '/_protected/masters/organization/_layout/'
+    | '/_protected/masters/organization/_layout/company/_layout'
+    | '/_protected/masters/organization/_layout/country/_layout'
+    | '/_protected/masters/organization/_layout/currency/_layout'
+    | '/_protected/masters/organization/_layout/fiscal_year/_layout'
+    | '/_protected/masters/organization/_layout/state/_layout'
+    | '/_protected/masters/organization/_layout/branch/'
+    | '/_protected/masters/organization/_layout/company/_layout/$id'
+    | '/_protected/masters/organization/_layout/country/_layout/$id'
+    | '/_protected/masters/organization/_layout/currency/_layout/$id'
+    | '/_protected/masters/organization/_layout/fiscal_year/_layout/$id'
+    | '/_protected/masters/organization/_layout/state/_layout/$id'
+    | '/_protected/masters/organization/_layout/company/_layout/'
+    | '/_protected/masters/organization/_layout/country/_layout/'
+    | '/_protected/masters/organization/_layout/currency/_layout/'
+    | '/_protected/masters/organization/_layout/fiscal_year/_layout/'
+    | '/_protected/masters/organization/_layout/state/_layout/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -247,6 +545,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ProtectedUserIndexRouteImport
       parentRoute: typeof ProtectedRoute
     }
+    '/_protected/masters/': {
+      id: '/_protected/masters/'
+      path: '/masters'
+      fullPath: '/masters/'
+      preLoaderRoute: typeof ProtectedMastersIndexRouteImport
+      parentRoute: typeof ProtectedRoute
+    }
     '/_protected/document/': {
       id: '/_protected/document/'
       path: '/document'
@@ -260,6 +565,167 @@ declare module '@tanstack/react-router' {
       fullPath: '/dashboard/'
       preLoaderRoute: typeof ProtectedDashboardIndexRouteImport
       parentRoute: typeof ProtectedRoute
+    }
+    '/_protected/(auth)/change-password': {
+      id: '/_protected/(auth)/change-password'
+      path: '/change-password'
+      fullPath: '/change-password'
+      preLoaderRoute: typeof ProtectedauthChangePasswordRouteImport
+      parentRoute: typeof ProtectedRoute
+    }
+    '/_protected/(auth)/profile/': {
+      id: '/_protected/(auth)/profile/'
+      path: '/profile'
+      fullPath: '/profile/'
+      preLoaderRoute: typeof ProtectedauthProfileIndexRouteImport
+      parentRoute: typeof ProtectedRoute
+    }
+    '/_protected/(app)/menu/': {
+      id: '/_protected/(app)/menu/'
+      path: '/menu'
+      fullPath: '/menu/'
+      preLoaderRoute: typeof ProtectedappMenuIndexRouteImport
+      parentRoute: typeof ProtectedRoute
+    }
+    '/_protected/masters/organization/_layout': {
+      id: '/_protected/masters/organization/_layout'
+      path: '/masters/organization'
+      fullPath: '/masters/organization'
+      preLoaderRoute: typeof ProtectedMastersOrganizationLayoutRouteImport
+      parentRoute: typeof ProtectedRoute
+    }
+    '/_protected/(auth)/user-fiscal-year/_layout': {
+      id: '/_protected/(auth)/user-fiscal-year/_layout'
+      path: '/user-fiscal-year'
+      fullPath: '/user-fiscal-year'
+      preLoaderRoute: typeof ProtectedauthUserFiscalYearLayoutRouteImport
+      parentRoute: typeof ProtectedRoute
+    }
+    '/_protected/masters/organization/_layout/': {
+      id: '/_protected/masters/organization/_layout/'
+      path: '/'
+      fullPath: '/masters/organization/'
+      preLoaderRoute: typeof ProtectedMastersOrganizationLayoutIndexRouteImport
+      parentRoute: typeof ProtectedMastersOrganizationLayoutRoute
+    }
+    '/_protected/(auth)/user-fiscal-year/_layout/': {
+      id: '/_protected/(auth)/user-fiscal-year/_layout/'
+      path: '/'
+      fullPath: '/user-fiscal-year/'
+      preLoaderRoute: typeof ProtectedauthUserFiscalYearLayoutIndexRouteImport
+      parentRoute: typeof ProtectedauthUserFiscalYearLayoutRoute
+    }
+    '/_protected/masters/organization/_layout/branch/': {
+      id: '/_protected/masters/organization/_layout/branch/'
+      path: '/branch'
+      fullPath: '/masters/organization/branch/'
+      preLoaderRoute: typeof ProtectedMastersOrganizationLayoutBranchIndexRouteImport
+      parentRoute: typeof ProtectedMastersOrganizationLayoutRoute
+    }
+    '/_protected/masters/organization/_layout/state/_layout': {
+      id: '/_protected/masters/organization/_layout/state/_layout'
+      path: '/state'
+      fullPath: '/masters/organization/state'
+      preLoaderRoute: typeof ProtectedMastersOrganizationLayoutStateLayoutRouteImport
+      parentRoute: typeof ProtectedMastersOrganizationLayoutRoute
+    }
+    '/_protected/masters/organization/_layout/fiscal_year/_layout': {
+      id: '/_protected/masters/organization/_layout/fiscal_year/_layout'
+      path: '/fiscal_year'
+      fullPath: '/masters/organization/fiscal_year'
+      preLoaderRoute: typeof ProtectedMastersOrganizationLayoutFiscal_yearLayoutRouteImport
+      parentRoute: typeof ProtectedMastersOrganizationLayoutRoute
+    }
+    '/_protected/masters/organization/_layout/currency/_layout': {
+      id: '/_protected/masters/organization/_layout/currency/_layout'
+      path: '/currency'
+      fullPath: '/masters/organization/currency'
+      preLoaderRoute: typeof ProtectedMastersOrganizationLayoutCurrencyLayoutRouteImport
+      parentRoute: typeof ProtectedMastersOrganizationLayoutRoute
+    }
+    '/_protected/masters/organization/_layout/country/_layout': {
+      id: '/_protected/masters/organization/_layout/country/_layout'
+      path: '/country'
+      fullPath: '/masters/organization/country'
+      preLoaderRoute: typeof ProtectedMastersOrganizationLayoutCountryLayoutRouteImport
+      parentRoute: typeof ProtectedMastersOrganizationLayoutRoute
+    }
+    '/_protected/masters/organization/_layout/company/_layout': {
+      id: '/_protected/masters/organization/_layout/company/_layout'
+      path: '/company'
+      fullPath: '/masters/organization/company'
+      preLoaderRoute: typeof ProtectedMastersOrganizationLayoutCompanyLayoutRouteImport
+      parentRoute: typeof ProtectedMastersOrganizationLayoutRoute
+    }
+    '/_protected/masters/organization/_layout/state/_layout/': {
+      id: '/_protected/masters/organization/_layout/state/_layout/'
+      path: '/'
+      fullPath: '/masters/organization/state/'
+      preLoaderRoute: typeof ProtectedMastersOrganizationLayoutStateLayoutIndexRouteImport
+      parentRoute: typeof ProtectedMastersOrganizationLayoutStateLayoutRoute
+    }
+    '/_protected/masters/organization/_layout/fiscal_year/_layout/': {
+      id: '/_protected/masters/organization/_layout/fiscal_year/_layout/'
+      path: '/'
+      fullPath: '/masters/organization/fiscal_year/'
+      preLoaderRoute: typeof ProtectedMastersOrganizationLayoutFiscal_yearLayoutIndexRouteImport
+      parentRoute: typeof ProtectedMastersOrganizationLayoutFiscal_yearLayoutRoute
+    }
+    '/_protected/masters/organization/_layout/currency/_layout/': {
+      id: '/_protected/masters/organization/_layout/currency/_layout/'
+      path: '/'
+      fullPath: '/masters/organization/currency/'
+      preLoaderRoute: typeof ProtectedMastersOrganizationLayoutCurrencyLayoutIndexRouteImport
+      parentRoute: typeof ProtectedMastersOrganizationLayoutCurrencyLayoutRoute
+    }
+    '/_protected/masters/organization/_layout/country/_layout/': {
+      id: '/_protected/masters/organization/_layout/country/_layout/'
+      path: '/'
+      fullPath: '/masters/organization/country/'
+      preLoaderRoute: typeof ProtectedMastersOrganizationLayoutCountryLayoutIndexRouteImport
+      parentRoute: typeof ProtectedMastersOrganizationLayoutCountryLayoutRoute
+    }
+    '/_protected/masters/organization/_layout/company/_layout/': {
+      id: '/_protected/masters/organization/_layout/company/_layout/'
+      path: '/'
+      fullPath: '/masters/organization/company/'
+      preLoaderRoute: typeof ProtectedMastersOrganizationLayoutCompanyLayoutIndexRouteImport
+      parentRoute: typeof ProtectedMastersOrganizationLayoutCompanyLayoutRoute
+    }
+    '/_protected/masters/organization/_layout/state/_layout/$id': {
+      id: '/_protected/masters/organization/_layout/state/_layout/$id'
+      path: '/$id'
+      fullPath: '/masters/organization/state/$id'
+      preLoaderRoute: typeof ProtectedMastersOrganizationLayoutStateLayoutIdRouteImport
+      parentRoute: typeof ProtectedMastersOrganizationLayoutStateLayoutRoute
+    }
+    '/_protected/masters/organization/_layout/fiscal_year/_layout/$id': {
+      id: '/_protected/masters/organization/_layout/fiscal_year/_layout/$id'
+      path: '/$id'
+      fullPath: '/masters/organization/fiscal_year/$id'
+      preLoaderRoute: typeof ProtectedMastersOrganizationLayoutFiscal_yearLayoutIdRouteImport
+      parentRoute: typeof ProtectedMastersOrganizationLayoutFiscal_yearLayoutRoute
+    }
+    '/_protected/masters/organization/_layout/currency/_layout/$id': {
+      id: '/_protected/masters/organization/_layout/currency/_layout/$id'
+      path: '/$id'
+      fullPath: '/masters/organization/currency/$id'
+      preLoaderRoute: typeof ProtectedMastersOrganizationLayoutCurrencyLayoutIdRouteImport
+      parentRoute: typeof ProtectedMastersOrganizationLayoutCurrencyLayoutRoute
+    }
+    '/_protected/masters/organization/_layout/country/_layout/$id': {
+      id: '/_protected/masters/organization/_layout/country/_layout/$id'
+      path: '/$id'
+      fullPath: '/masters/organization/country/$id'
+      preLoaderRoute: typeof ProtectedMastersOrganizationLayoutCountryLayoutIdRouteImport
+      parentRoute: typeof ProtectedMastersOrganizationLayoutCountryLayoutRoute
+    }
+    '/_protected/masters/organization/_layout/company/_layout/$id': {
+      id: '/_protected/masters/organization/_layout/company/_layout/$id'
+      path: '/$id'
+      fullPath: '/masters/organization/company/$id'
+      preLoaderRoute: typeof ProtectedMastersOrganizationLayoutCompanyLayoutIdRouteImport
+      parentRoute: typeof ProtectedMastersOrganizationLayoutCompanyLayoutRoute
     }
   }
 }
@@ -282,16 +748,168 @@ const GuestRouteChildren: GuestRouteChildren = {
 
 const GuestRouteWithChildren = GuestRoute._addFileChildren(GuestRouteChildren)
 
+interface ProtectedauthUserFiscalYearLayoutRouteChildren {
+  ProtectedauthUserFiscalYearLayoutIndexRoute: typeof ProtectedauthUserFiscalYearLayoutIndexRoute
+}
+
+const ProtectedauthUserFiscalYearLayoutRouteChildren: ProtectedauthUserFiscalYearLayoutRouteChildren =
+  {
+    ProtectedauthUserFiscalYearLayoutIndexRoute:
+      ProtectedauthUserFiscalYearLayoutIndexRoute,
+  }
+
+const ProtectedauthUserFiscalYearLayoutRouteWithChildren =
+  ProtectedauthUserFiscalYearLayoutRoute._addFileChildren(
+    ProtectedauthUserFiscalYearLayoutRouteChildren,
+  )
+
+interface ProtectedMastersOrganizationLayoutCompanyLayoutRouteChildren {
+  ProtectedMastersOrganizationLayoutCompanyLayoutIdRoute: typeof ProtectedMastersOrganizationLayoutCompanyLayoutIdRoute
+  ProtectedMastersOrganizationLayoutCompanyLayoutIndexRoute: typeof ProtectedMastersOrganizationLayoutCompanyLayoutIndexRoute
+}
+
+const ProtectedMastersOrganizationLayoutCompanyLayoutRouteChildren: ProtectedMastersOrganizationLayoutCompanyLayoutRouteChildren =
+  {
+    ProtectedMastersOrganizationLayoutCompanyLayoutIdRoute:
+      ProtectedMastersOrganizationLayoutCompanyLayoutIdRoute,
+    ProtectedMastersOrganizationLayoutCompanyLayoutIndexRoute:
+      ProtectedMastersOrganizationLayoutCompanyLayoutIndexRoute,
+  }
+
+const ProtectedMastersOrganizationLayoutCompanyLayoutRouteWithChildren =
+  ProtectedMastersOrganizationLayoutCompanyLayoutRoute._addFileChildren(
+    ProtectedMastersOrganizationLayoutCompanyLayoutRouteChildren,
+  )
+
+interface ProtectedMastersOrganizationLayoutCountryLayoutRouteChildren {
+  ProtectedMastersOrganizationLayoutCountryLayoutIdRoute: typeof ProtectedMastersOrganizationLayoutCountryLayoutIdRoute
+  ProtectedMastersOrganizationLayoutCountryLayoutIndexRoute: typeof ProtectedMastersOrganizationLayoutCountryLayoutIndexRoute
+}
+
+const ProtectedMastersOrganizationLayoutCountryLayoutRouteChildren: ProtectedMastersOrganizationLayoutCountryLayoutRouteChildren =
+  {
+    ProtectedMastersOrganizationLayoutCountryLayoutIdRoute:
+      ProtectedMastersOrganizationLayoutCountryLayoutIdRoute,
+    ProtectedMastersOrganizationLayoutCountryLayoutIndexRoute:
+      ProtectedMastersOrganizationLayoutCountryLayoutIndexRoute,
+  }
+
+const ProtectedMastersOrganizationLayoutCountryLayoutRouteWithChildren =
+  ProtectedMastersOrganizationLayoutCountryLayoutRoute._addFileChildren(
+    ProtectedMastersOrganizationLayoutCountryLayoutRouteChildren,
+  )
+
+interface ProtectedMastersOrganizationLayoutCurrencyLayoutRouteChildren {
+  ProtectedMastersOrganizationLayoutCurrencyLayoutIdRoute: typeof ProtectedMastersOrganizationLayoutCurrencyLayoutIdRoute
+  ProtectedMastersOrganizationLayoutCurrencyLayoutIndexRoute: typeof ProtectedMastersOrganizationLayoutCurrencyLayoutIndexRoute
+}
+
+const ProtectedMastersOrganizationLayoutCurrencyLayoutRouteChildren: ProtectedMastersOrganizationLayoutCurrencyLayoutRouteChildren =
+  {
+    ProtectedMastersOrganizationLayoutCurrencyLayoutIdRoute:
+      ProtectedMastersOrganizationLayoutCurrencyLayoutIdRoute,
+    ProtectedMastersOrganizationLayoutCurrencyLayoutIndexRoute:
+      ProtectedMastersOrganizationLayoutCurrencyLayoutIndexRoute,
+  }
+
+const ProtectedMastersOrganizationLayoutCurrencyLayoutRouteWithChildren =
+  ProtectedMastersOrganizationLayoutCurrencyLayoutRoute._addFileChildren(
+    ProtectedMastersOrganizationLayoutCurrencyLayoutRouteChildren,
+  )
+
+interface ProtectedMastersOrganizationLayoutFiscal_yearLayoutRouteChildren {
+  ProtectedMastersOrganizationLayoutFiscal_yearLayoutIdRoute: typeof ProtectedMastersOrganizationLayoutFiscal_yearLayoutIdRoute
+  ProtectedMastersOrganizationLayoutFiscal_yearLayoutIndexRoute: typeof ProtectedMastersOrganizationLayoutFiscal_yearLayoutIndexRoute
+}
+
+const ProtectedMastersOrganizationLayoutFiscal_yearLayoutRouteChildren: ProtectedMastersOrganizationLayoutFiscal_yearLayoutRouteChildren =
+  {
+    ProtectedMastersOrganizationLayoutFiscal_yearLayoutIdRoute:
+      ProtectedMastersOrganizationLayoutFiscal_yearLayoutIdRoute,
+    ProtectedMastersOrganizationLayoutFiscal_yearLayoutIndexRoute:
+      ProtectedMastersOrganizationLayoutFiscal_yearLayoutIndexRoute,
+  }
+
+const ProtectedMastersOrganizationLayoutFiscal_yearLayoutRouteWithChildren =
+  ProtectedMastersOrganizationLayoutFiscal_yearLayoutRoute._addFileChildren(
+    ProtectedMastersOrganizationLayoutFiscal_yearLayoutRouteChildren,
+  )
+
+interface ProtectedMastersOrganizationLayoutStateLayoutRouteChildren {
+  ProtectedMastersOrganizationLayoutStateLayoutIdRoute: typeof ProtectedMastersOrganizationLayoutStateLayoutIdRoute
+  ProtectedMastersOrganizationLayoutStateLayoutIndexRoute: typeof ProtectedMastersOrganizationLayoutStateLayoutIndexRoute
+}
+
+const ProtectedMastersOrganizationLayoutStateLayoutRouteChildren: ProtectedMastersOrganizationLayoutStateLayoutRouteChildren =
+  {
+    ProtectedMastersOrganizationLayoutStateLayoutIdRoute:
+      ProtectedMastersOrganizationLayoutStateLayoutIdRoute,
+    ProtectedMastersOrganizationLayoutStateLayoutIndexRoute:
+      ProtectedMastersOrganizationLayoutStateLayoutIndexRoute,
+  }
+
+const ProtectedMastersOrganizationLayoutStateLayoutRouteWithChildren =
+  ProtectedMastersOrganizationLayoutStateLayoutRoute._addFileChildren(
+    ProtectedMastersOrganizationLayoutStateLayoutRouteChildren,
+  )
+
+interface ProtectedMastersOrganizationLayoutRouteChildren {
+  ProtectedMastersOrganizationLayoutIndexRoute: typeof ProtectedMastersOrganizationLayoutIndexRoute
+  ProtectedMastersOrganizationLayoutCompanyLayoutRoute: typeof ProtectedMastersOrganizationLayoutCompanyLayoutRouteWithChildren
+  ProtectedMastersOrganizationLayoutCountryLayoutRoute: typeof ProtectedMastersOrganizationLayoutCountryLayoutRouteWithChildren
+  ProtectedMastersOrganizationLayoutCurrencyLayoutRoute: typeof ProtectedMastersOrganizationLayoutCurrencyLayoutRouteWithChildren
+  ProtectedMastersOrganizationLayoutFiscal_yearLayoutRoute: typeof ProtectedMastersOrganizationLayoutFiscal_yearLayoutRouteWithChildren
+  ProtectedMastersOrganizationLayoutStateLayoutRoute: typeof ProtectedMastersOrganizationLayoutStateLayoutRouteWithChildren
+  ProtectedMastersOrganizationLayoutBranchIndexRoute: typeof ProtectedMastersOrganizationLayoutBranchIndexRoute
+}
+
+const ProtectedMastersOrganizationLayoutRouteChildren: ProtectedMastersOrganizationLayoutRouteChildren =
+  {
+    ProtectedMastersOrganizationLayoutIndexRoute:
+      ProtectedMastersOrganizationLayoutIndexRoute,
+    ProtectedMastersOrganizationLayoutCompanyLayoutRoute:
+      ProtectedMastersOrganizationLayoutCompanyLayoutRouteWithChildren,
+    ProtectedMastersOrganizationLayoutCountryLayoutRoute:
+      ProtectedMastersOrganizationLayoutCountryLayoutRouteWithChildren,
+    ProtectedMastersOrganizationLayoutCurrencyLayoutRoute:
+      ProtectedMastersOrganizationLayoutCurrencyLayoutRouteWithChildren,
+    ProtectedMastersOrganizationLayoutFiscal_yearLayoutRoute:
+      ProtectedMastersOrganizationLayoutFiscal_yearLayoutRouteWithChildren,
+    ProtectedMastersOrganizationLayoutStateLayoutRoute:
+      ProtectedMastersOrganizationLayoutStateLayoutRouteWithChildren,
+    ProtectedMastersOrganizationLayoutBranchIndexRoute:
+      ProtectedMastersOrganizationLayoutBranchIndexRoute,
+  }
+
+const ProtectedMastersOrganizationLayoutRouteWithChildren =
+  ProtectedMastersOrganizationLayoutRoute._addFileChildren(
+    ProtectedMastersOrganizationLayoutRouteChildren,
+  )
+
 interface ProtectedRouteChildren {
+  ProtectedauthChangePasswordRoute: typeof ProtectedauthChangePasswordRoute
   ProtectedDashboardIndexRoute: typeof ProtectedDashboardIndexRoute
   ProtectedDocumentIndexRoute: typeof ProtectedDocumentIndexRoute
+  ProtectedMastersIndexRoute: typeof ProtectedMastersIndexRoute
   ProtectedUserIndexRoute: typeof ProtectedUserIndexRoute
+  ProtectedauthUserFiscalYearLayoutRoute: typeof ProtectedauthUserFiscalYearLayoutRouteWithChildren
+  ProtectedMastersOrganizationLayoutRoute: typeof ProtectedMastersOrganizationLayoutRouteWithChildren
+  ProtectedappMenuIndexRoute: typeof ProtectedappMenuIndexRoute
+  ProtectedauthProfileIndexRoute: typeof ProtectedauthProfileIndexRoute
 }
 
 const ProtectedRouteChildren: ProtectedRouteChildren = {
+  ProtectedauthChangePasswordRoute: ProtectedauthChangePasswordRoute,
   ProtectedDashboardIndexRoute: ProtectedDashboardIndexRoute,
   ProtectedDocumentIndexRoute: ProtectedDocumentIndexRoute,
+  ProtectedMastersIndexRoute: ProtectedMastersIndexRoute,
   ProtectedUserIndexRoute: ProtectedUserIndexRoute,
+  ProtectedauthUserFiscalYearLayoutRoute:
+    ProtectedauthUserFiscalYearLayoutRouteWithChildren,
+  ProtectedMastersOrganizationLayoutRoute:
+    ProtectedMastersOrganizationLayoutRouteWithChildren,
+  ProtectedappMenuIndexRoute: ProtectedappMenuIndexRoute,
+  ProtectedauthProfileIndexRoute: ProtectedauthProfileIndexRoute,
 }
 
 const ProtectedRouteWithChildren = ProtectedRoute._addFileChildren(
