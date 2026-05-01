@@ -37,7 +37,8 @@ const PdfComponent = ({ document }: PdfComponentProps) => {
         return path;
     };
 
-    const fileUrl = resolveFileUrl(document.path);
+    // const fileUrl = resolveFileUrl(document.path);
+    const fileUrl = document.path ? resolveFileUrl(document.path) : "";
     // console.log("Rendering PDF for URL:", fileUrl);
 
     const handleClose = () => {

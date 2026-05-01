@@ -38,6 +38,7 @@ export function PdfContextMenu({ children, document, onOpen }: PdfContextMenuPro
 
     const handleOpen = (e: React.MouseEvent) => {
         e.stopPropagation();
+          if (!document.path) return;
         if (onOpen) {
             onOpen();
         } else {

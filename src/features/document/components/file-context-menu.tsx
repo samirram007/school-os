@@ -20,6 +20,7 @@ type FileContextMenuProps = {
 export function FileContextMenu({ children, document, onOpen }: FileContextMenuProps) {
     const handleOpen = (e: React.MouseEvent) => {
         e.stopPropagation();
+          if (!document.path) return;
         
         if (onOpen) {
             onOpen();
@@ -27,7 +28,7 @@ export function FileContextMenu({ children, document, onOpen }: FileContextMenuP
             const fileUrl = import.meta.env.VITE_IMAGE_ROOT_PATH 
                 ? `${import.meta.env.VITE_IMAGE_ROOT_PATH}${document.path}`
                 : document.path;
-            window.open(fileUrl, '_blank');
+             window.open(fileUrl, '_blank');
         }
     }
 
