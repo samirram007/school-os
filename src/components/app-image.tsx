@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useState, forwardRef, useImperativeHandle } from "react"
 
 import { cn } from "@/lib/utils"
 import { Dialog, DialogContent } from "./ui/dialog"
@@ -12,14 +12,18 @@ type AppImageProps = {
 
 }
 
-export default function AppImage({
+export type AppImageHandle = {
+    openModal: () => void
+}
+
+const AppImage = forwardRef<AppImageHandle, AppImageProps>(({
     src,
     alt = "image",
     className,
     fallback = "/images/placeholder.png",
     preview = true,
 
-}: AppImageProps) {
+}: AppImageProps, ref) => {
 
     const [error, setError] = useState(false)
     const [loaded, setLoaded] = useState(false)
@@ -28,7 +32,7 @@ export default function AppImage({
 
     const finalSrc = error || !src ? fallback : src
 
-    // ✅ detect image type
+    // detect image type
     const isImage = /\.(jpg|jpeg|png|gif|webp|avif)$/i.test(finalSrc)
 
     const handleClick = () => {
@@ -36,6 +40,15 @@ export default function AppImage({
             setOpen(true)
         }
     }
+
+    
+    useImperativeHandle(ref, () => ({
+        openModal: () => {
+            if (preview && isImage) {
+                setOpen(true)
+            }
+        }
+    }), [preview, isImage])
 
     return (
         <>
@@ -89,4 +102,7 @@ export default function AppImage({
             )}
         </>
     )
-}
+})
+
+AppImage.displayName = "AppImage"
+export default AppImage

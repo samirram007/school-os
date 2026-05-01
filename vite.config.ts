@@ -11,16 +11,23 @@ import { resolve } from 'node:path'
 import tanstackRouter from '@tanstack/router-plugin/vite'
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd())
+  const apiBaseUrl = env.VITE_API_BASE_URL
+  const apiOrigin = apiBaseUrl.replace(/\/api\/?$/, '')
   return {
     base: env.VITE_BASE_URL,
     server: {
       // port: 3000,
       proxy: {
         '/api': {
-          target: env.VITE_API_BASE_URL, // Your Laravel backend URL
+          target: apiBaseUrl, // Your Laravel backend URL
           changeOrigin: true, // Ensures the host header is rewritten to the target
           secure: env.VITE_API_SECURE === 'true', // For local HTTP servers (set to true for HTTPS in production)
           rewrite: (path) => path.replace(/^\/api/, ''), // Optional: removes /api prefix if needed
+        },
+        '/storage': {
+          target: apiOrigin,
+          changeOrigin: true,
+          secure: env.VITE_API_SECURE === 'true',
         },
       },
       open: true
