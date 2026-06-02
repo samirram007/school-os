@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="blueGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0056b3" />
+      <stop offset="100%" stop-color="#003366" />
+    </linearGradient>
+  </defs>
+  <!-- Geometric 'P' shape using poly-style segments -->
+  <path d="M20 20 L60 20 L70 40 L40 40 L40 80 L20 80 Z" fill="url(#blueGrad)" />
+  <path d="M40 40 L70 40 L60 60 L30 60 Z" fill="#0056b3" opacity="0.8" />
+  <!-- 'ERP' dot accent -->
+  <circle cx="80" cy="70" r="10" fill="#ff7f00" />
+</svg>

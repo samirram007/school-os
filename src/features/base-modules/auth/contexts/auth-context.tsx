@@ -1,17 +1,17 @@
 import { flushSync } from 'react-dom';
 import React, { createContext, useContext, useEffect, useState } from 'react';
-import type { UserWithRole } from '../data/schema';
+import { encryptData, decryptData } from '@/utils/crypto-storage';
+import type { AuthRequest, AuthResponse, UserWithRole } from '../data/schema';
 import type { UserFiscalYear } from '#/features/base-modules/user_fiscal_year/data/schema';
 import type { Role } from '#/features/base-modules/role/data/schema';
 import type { Permission } from '#/features/base-modules/permission/data/schema';
 import { useQueryClient } from '@tanstack/react-query';
 import { fetchUserProfileService, loginService, logoutService } from '../data/apis';
+import { env } from '@/env';
 
-export type LoginProps = {
-    email: string;
-    password: string;
-}
+const AUTH_STORAGE = env.VITE_AUTH_STORAGE === 'localStorage' ? localStorage : sessionStorage;
 
+ 
 
 export type PeriodType = {
     startDate: Date | null;
@@ -20,103 +20,113 @@ export type PeriodType = {
 export interface AuthContextType {
     user: UserWithRole | null;
     userFiscalYear: UserFiscalYear | null;
+    tenantId: string | null;
     isLoading: boolean;
     isAuthenticated: boolean;
-    login: (props: LoginProps) => Promise<void>;
+    
     logout: () => Promise<void>;
-    fetchProfile: () => Promise<void>;
+    fetchProfile: () => Promise<boolean>;
     permissions: string[];
     period: PeriodType | null;
     setPeriod: (period: PeriodType | null) => void;
+    successfullLogin: (data: AuthResponse) => Promise<boolean>;
 }
 export const AuthContext = createContext<AuthContextType | undefined>(undefined);
+
 
 export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     // const navigate = useNavigate();
     // const [isAuthenticated, setIsAuthenticated] = useState(true)
     const [user, setUser] = useState<UserWithRole | null>(null);
     const [userFiscalYear, setUserFiscalYear] = useState<UserFiscalYear | null>(null);
+    const [tenantId, setTenantId] = useState<string | null>(null);
     const [period, setPeriod] = useState<PeriodType | null>(null);
     const [permissions, setpermissions] = useState<string[]>([]);
     const [isLoading, setIsLoading] = useState(true)
     const queryClient = useQueryClient();
-    const fetchProfile = async () => {
+    const fetchProfile = async (): Promise<boolean> => {
         setIsLoading(true);
-        // check cookie key "token" is set  else redirect to login
-
 
         try {
-            // console.log('Fetching profile...');
+         
+            console.log('fetching user profile:');
             const data = await fetchUserProfileService();
+            console.log('Fetched user profile:', data);
             flushSync(() => {
-                //console.log("userProfileData", data?.data)
-                setUser(data?.data);
-                sessionStorage.setItem('user', JSON.stringify(data?.data));
-                setUserFiscalYear(data?.data?.userFiscalYear || null);
+                const userData = data?.data;
+                
+                // Securely store encrypted user data
+                encryptData(JSON.stringify(userData), 'secret@123').then(encrypted => {
+                    AUTH_STORAGE.setItem('user', encrypted);
+                });
 
-                setPeriod(data?.data?.userFiscalYear ? {
-                    startDate: new Date(data?.data?.userFiscalYear.startDate),
-                    endDate: new Date(data?.data?.userFiscalYear.endDate)
+                setUser(userData);
+
+                const fiscalYear = userData?.userFiscalYear;
+                setUserFiscalYear(fiscalYear || null);
+
+                const tId = fiscalYear?.fiscalYear?.companyId?.toString() || null;
+                setTenantId(tId);
+                if (tId) {
+                    AUTH_STORAGE.setItem('x-tenant-key', tId);
+                } else {
+                    AUTH_STORAGE.removeItem('x-tenant-key');
+                }
+
+                setPeriod(fiscalYear ? {
+                    startDate: new Date(fiscalYear.startDate),
+                    endDate: new Date(fiscalYear.endDate)
                 } : null);
                 const perms: string[] = [];
-                // Extract permissions from roles
-                //must be unique permissions
 
-                data?.data?.roles?.forEach((role: Role) => {
+                userData?.roles?.forEach((role: Role) => {
                     role?.permissions?.forEach((permission: Permission) => {
-                        // console.log(permission, "permissions in auth context")
                         if (permission.isAllowed && !perms.includes(permission.appModuleFeature?.code || '')) {
                             perms.push(permission.appModuleFeature?.code || '');
                         }
                     });
                 });
 
-                // data?.data?.roles?.forEach((role: Role) => {
-                //     role.permission?.forEach((permission: Permission) => {
-                //         if (permission.isAllowed) {
-                //             perms.push(permission.appModuleFeature?.code || '');
-                //         }
-                //     });
-                // });
                 setpermissions(perms);
             })
-            // console.log('Profile fetched successfully:', data?.data);
 
-            // console.log('profile Data: ', data, isAuthenticated, user);
+            return true;
         } catch (error) {
             flushSync(() => {
                 setUser(null);
                 setUserFiscalYear(null);
-
+                setTenantId(null);
+                AUTH_STORAGE.removeItem('x-tenant-key');
             })
-        } finally {
-            // console.log('Profile fetch completed');
 
+            return false;
+        } finally {
             setIsLoading(false);
         }
     };
-    const login = React.useCallback(async ({ email, password }: LoginProps) => {
-        setIsLoading(true);
-        const response = await loginService({ email, password })
-        console.log(response);
 
 
-        if (response?.status === 'success') {
-
-            await fetchProfile();
-        }
-        else {
+    const successfullLogin = async (data: AuthResponse): Promise<boolean> => {
+        if (data.success) {
+            AUTH_STORAGE.setItem('token', data.accessToken);
+              await fetchProfile();
+    
+            // if (!user) {
+            //     AUTH_STORAGE.removeItem('token');
+            //     AUTH_STORAGE.removeItem('user');
+            //     return false;
+            // }
+            return true;
+        } else {
             flushSync(() => {
                 setUser(null);
                 setUserFiscalYear(null);
-
+                setTenantId(null);
+                AUTH_STORAGE.removeItem('x-tenant-key');
             })
+            return false;
         }
-        setIsLoading(false);
-        // axiosClient.get('/cookie-test').then(console.log);
-        // await fetchProfile();
-
-    }, [])
+    }
 
     const logout = React.useCallback(async () => {
         console.log('Logging out...');
@@ -124,36 +134,36 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
         try {
             // Optionally hit a logout endpoint to clear server-side auth
             await logoutService();
-
-            // Clear all client-side cache (e.g. React Query)
+        } catch (error) {
+            console.error("Logout API failed:", error);
+        } finally {
+            // Always clear client-side cache even if API fails
             flushSync(() => {
                 queryClient.clear();
                 setUser(null);
-
+                setUserFiscalYear(null);
+                setTenantId(null);
+                AUTH_STORAGE.removeItem('x-tenant-key');
+                AUTH_STORAGE.removeItem('user');
+                AUTH_STORAGE.removeItem('token');
             })
-
-
-            // Optionally clear auth cookies manually, if not HTTP-only
-            // document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=aipt-api.local; secure";
-
-        } catch (error) {
-            console.error("Logout failed:", error);
-        }
-        finally {
             setIsLoading(false);
-
         }
     }, [])
 
 
 
     useEffect(() => {
-
-        fetchProfile();
+        const token = AUTH_STORAGE.getItem('token');
+        if (token) {
+            fetchProfile();
+        } else {
+            setIsLoading(false);
+        }
     }, []);
     return (
         <AuthContext.Provider
-            value={{ user, isLoading, userFiscalYear, period, setPeriod, isAuthenticated: !!user, login, logout, fetchProfile, permissions }}>
+            value={{ user, isLoading,successfullLogin, userFiscalYear, tenantId, period, setPeriod, isAuthenticated: !!user,            logout, fetchProfile, permissions }}>
             {children}
         </AuthContext.Provider>
     )
