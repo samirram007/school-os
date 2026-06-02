@@ -100,7 +100,7 @@ type FormProps = {
     plain?: boolean
 }
 const AddressForm = (props: FormProps) => {
-    const { form, labelLayoutClass, plain = false } = props as FormProps
+    const { form, labelLayoutClass, plain = false } = props
     const gapClass = `${labelLayoutClass ?? ''} gap-4`
     // const gapClass2 = "grid grid-cols-[80px_1fr] gap-2"
     return (

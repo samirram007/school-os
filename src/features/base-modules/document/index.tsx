@@ -14,7 +14,8 @@ import PdfComponent from "./components/pdf-component";
 import FolderComponent from "./components/folder-component";
 import FileComponent from "./components/file-component";
 import { toast } from "sonner";
-import { DndContext, PointerSensor, useDraggable, useDroppable, useSensor, useSensors, type DragEndEvent } from "@dnd-kit/core";
+import { DndContext, PointerSensor, useDraggable, useDroppable, useSensor, useSensors  } from "@dnd-kit/core";
+import type {DragEndEvent} from "@dnd-kit/core";
 import { Loader } from "lucide-react";
 import { BodyContextMenu } from "./components/body-context-menu";
 
@@ -101,11 +102,11 @@ const DoucmentPath = () => {
                                 className="cursor-pointer hover:underline"
                                 onClick={() => handleClick(segment)}
                             >
-                                {segment.originalName!}
+                                {segment.originalName}
                             </span>
                         ) : (
                             <span className="font-semibold">
-                                {segment.originalName!}
+                                {segment.originalName}
                             </span>
                         )}
                         {index < pathSegments.length - 1 && " " + pathSymbol + " "}
@@ -257,7 +258,6 @@ const DocumentItem = ({ document }: { document: any }) => {
         </div>
     );
 }
-
 
 
 

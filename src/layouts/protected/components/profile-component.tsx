@@ -1,11 +1,11 @@
 import { Avatar, AvatarFallback, AvatarImage } from "#/components/ui/avatar";
-import { Button } from "#/components/ui/button";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "#/components/ui/dropdown-menu";
-import { SidebarMenuButton, useSidebar } from "#/components/ui/sidebar";
-import { BadgeCheck, Bell, ChevronsUpDown, CreditCard, LogOut, Sparkles } from "lucide-react";
+import { useSidebar } from "#/components/ui/sidebar";
+import { BadgeCheck, Bell, CreditCard, LogOut, Sparkles } from "lucide-react";
+import { useAuth } from "#/features/base-modules/auth/contexts/auth-context";
 
 export default function ProfileComponent({
-    user,
+    user: _user,
 }: {
     user: {
         name: string
@@ -14,6 +14,14 @@ export default function ProfileComponent({
     }
 }) {
     const { isMobile } = useSidebar()
+    const { user: authUser, logout } = useAuth()
+
+    const displayUser = {
+        name: authUser?.name || _user.name,
+        email: authUser?.email || _user.email,
+        avatar: _user.avatar
+    }
+
     return (
         <div className="ml-auto ">
             <DropdownMenu>
@@ -21,16 +29,13 @@ export default function ProfileComponent({
 
                     <Avatar className="h-12 w-12    bg-gradient-light
                      rounded-full shadow-md border cursor-pointer">
-                        <AvatarImage className="" src={user.avatar} alt={user.name} />
+                        <AvatarImage className="" src={displayUser.avatar} alt={displayUser.name} />
                         <AvatarFallback className="rounded-lg  
-                        bg-gray-50/0 text-gray-50 text-xl font-stretch-semi-condensed    ">{user.name.charAt(0).toLocaleUpperCase() + user.name.charAt(1).toLocaleUpperCase()}</AvatarFallback>
+                        bg-gray-50/0 text-gray-50 text-xl font-stretch-semi-condensed    ">
+                            {displayUser.name?.charAt(0)?.toLocaleUpperCase() || 'U'}
+                            {displayUser.name?.charAt(1)?.toLocaleUpperCase() || ''}
+                        </AvatarFallback>
                     </Avatar>
-                    {/* <div className="grid flex-1 text-left text-sm leading-tight">
-                            <span className="truncate font-medium">{user.name}</span>
-                            <span className="truncate text-xs">{user.email}</span>
-                        </div>
-                        <ChevronsUpDown className="ml-auto size-4" /> */}
-
                 </DropdownMenuTrigger>
                 <DropdownMenuContent
                     className="w-(--radix-dropdown-menu-trigger-width) min-w-56 rounded-lg"
@@ -41,12 +46,14 @@ export default function ProfileComponent({
                     <DropdownMenuLabel className="p-0 font-normal">
                         <div className="flex items-center gap-2 px-1 py-1.5 text-left text-sm">
                             <Avatar className="h-8 w-8 rounded-lg">
-                                <AvatarImage src={user.avatar} alt={user.name} />
-                                <AvatarFallback className="rounded-lg">CN</AvatarFallback>
+                                <AvatarImage src={displayUser.avatar} alt={displayUser.name} />
+                                <AvatarFallback className="rounded-lg">
+                                    {displayUser.name?.charAt(0) || 'U'}
+                                </AvatarFallback>
                             </Avatar>
                             <div className="grid flex-1 text-left text-sm leading-tight">
-                                <span className="truncate font-medium">{user.name}</span>
-                                <span className="truncate text-xs">{user.email}</span>
+                                <span className="truncate font-medium">{displayUser.name}</span>
+                                <span className="truncate text-xs">{displayUser.email}</span>
                             </div>
                         </div>
                     </DropdownMenuLabel>
@@ -73,7 +80,7 @@ export default function ProfileComponent({
                         </DropdownMenuItem>
                     </DropdownMenuGroup>
                     <DropdownMenuSeparator />
-                    <DropdownMenuItem>
+                    <DropdownMenuItem onClick={() => logout()}>
                         <LogOut />
                         Log out
                     </DropdownMenuItem>

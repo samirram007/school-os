@@ -9,14 +9,16 @@ import {
 import FormInputField from '@/components/form-input-field'
 import { Dialog, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from '@/components/ui/dialog'
 import { Route as CountryRoute } from '@/routes/_protected/masters/organization/_layout/country/_layout'
-import { lowerCase } from '@/utils/removeEmptyStrings'
+import { lowerCase } from '@/utils/format-utils'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { useNavigate } from '@tanstack/react-router'
 import { Loader2 } from 'lucide-react'
 import { useForm } from 'react-hook-form'
 import { storeCountryService, updateCountryService } from '../data/api'
-import { formSchema, type Country, type CountryForm } from '../data/schema'
+import { formSchema   } from '../data/schema'
+import type {Country, CountryForm} from '../data/schema';
+
 interface Props {
     currentRow?: Country
 }

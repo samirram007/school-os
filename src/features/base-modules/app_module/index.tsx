@@ -1,10 +1,11 @@
 
-import { Main } from '@/layouts/components/main'
 
 
 
 
 
+
+import { Main } from '@/layouts/protected/components/main'
 import { columns } from './components/columns'
 
 
@@ -12,7 +13,8 @@ import { Dialogs } from './components/dialogs'
 import { GridTable } from './components/grid-table'
 import { PrimaryButtons } from './components/primary-buttons'
 import AppModuleProvider from './contexts/app_module-context'
-import { appModuleListSchema, type AppModuleList } from './data/schema'
+import { appModuleListSchema  } from './data/schema'
+import type {AppModuleList} from './data/schema';
 
 
 

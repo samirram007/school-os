@@ -17,13 +17,16 @@ import { useSuspenseQuery } from '@tanstack/react-query'
 import { useNavigate } from '@tanstack/react-router'
 import { Loader2 } from 'lucide-react'
 import { Suspense, useEffect, useMemo, useState } from 'react'
-import { useForm, type UseFormReturn } from 'react-hook-form'
+import { useForm  } from 'react-hook-form'
+import type {UseFormReturn} from 'react-hook-form';
 import { companyQueryOptions } from '../../company/data/queryOptions'
 import type { Company } from '../../company/data/schema'
 import { defaultValues } from '../data/data'
 import { useFiscalYearMutation } from '../data/queryOptions'
-import { formSchema, type FiscalYear, type FiscalYearForm } from '../data/schema'
+import { formSchema   } from '../data/schema'
+import type {FiscalYear, FiscalYearForm} from '../data/schema';
 import CompanyDropdown from './dropdown/company-dropdown'
+
 interface Props {
     currentRow?: FiscalYear
 }
@@ -182,9 +185,9 @@ const DateBox = (props: DateBoxProps) => {
         const now = new Date();
         const parts = input.split(/[./-]/).map(p => p.trim());
 
-        let day = Number(parts[0]);
-        let month = parts[1] ? Number(parts[1]) - 1 : now.getMonth(); // month index
-        let year =
+        const day = Number(parts[0]);
+        const month = parts[1] ? Number(parts[1]) - 1 : now.getMonth(); // month index
+        const year =
             parts[2] && parts[2].length === 2
                 ? 2000 + Number(parts[2])
                 : parts[2]

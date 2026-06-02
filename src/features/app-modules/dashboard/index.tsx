@@ -1,8 +1,9 @@
 import { Main } from "#/layouts/protected/components/main";
+import { useAuth } from "#/features/base-modules/auth/contexts/auth-context";
 
 export default function Dashboard() {
-    const user = JSON.parse(sessionStorage.getItem('user') || 'null');
-    //console.log(user)
+    const { user } = useAuth();
+    // console.log(user)
     return (
         <Main className="max-w-full flex flex-1 flex-col gap-4 p-4 pt-0">
             <div className="grid auto-rows-min gap-4 md:grid-cols-3">

@@ -22,7 +22,7 @@ const RowActions = (props: DataTableRowActionsProps) => {
                 console.log("row Action: ", currentRow)
                 navigate({
                     to: UserDetailRoute.to,
-                    params: { id: data.id! },
+                    params: { id: data.id },
                 })
 
             }}

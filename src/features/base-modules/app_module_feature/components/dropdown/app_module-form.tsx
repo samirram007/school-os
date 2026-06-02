@@ -14,7 +14,7 @@ type FormProps = {
     form: UseFormReturn<AppModuleFeatureForm>;
 };
 const AppModuleForm = (props: FormProps) => {
-    const { form } = props as FormProps;
+    const { form } = props;
     const { data: appModules, isLoading } = useQuery({
         queryKey: ["appModule"],
         queryFn: () => fetchAppModuleService(),

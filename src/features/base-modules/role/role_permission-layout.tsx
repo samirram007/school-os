@@ -6,7 +6,7 @@ import { Main } from '@/layouts/components/main'
 
 
 import { useAdministration } from '@/features/masters/administration/context/administration-context'
-import { upperCase } from '@/utils/removeEmptyStrings'
+import { upperCase } from '@/utils/format-utils'
 import { useEffect } from 'react'
 import type { AppModuleFeatureList } from '../app_module_feature/data/schema'
 import RolePermission from './components/permission'

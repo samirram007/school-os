@@ -24,6 +24,7 @@ import { Route as ProtectedMastersIndexRouteImport } from './routes/_protected/m
 import { Route as ProtectedDocumentIndexRouteImport } from './routes/_protected/document/index'
 import { Route as ProtectedDashboardIndexRouteImport } from './routes/_protected/dashboard/index'
 import { Route as ProtectedauthChangePasswordRouteImport } from './routes/_protected/(auth)/change-password'
+import { Route as ProtectedappMenuRouteRouteImport } from './routes/_protected/(app)/menu/route'
 import { Route as ProtectedauthProfileIndexRouteImport } from './routes/_protected/(auth)/profile/index'
 import { Route as ProtectedappMenuIndexRouteImport } from './routes/_protected/(app)/menu/index'
 import { Route as ProtectedMastersOrganizationLayoutRouteImport } from './routes/_protected/masters/organization/_layout'
@@ -122,6 +123,11 @@ const ProtectedauthChangePasswordRoute =
     path: '/change-password',
     getParentRoute: () => ProtectedRoute,
   } as any)
+const ProtectedappMenuRouteRoute = ProtectedappMenuRouteRouteImport.update({
+  id: '/(app)/menu',
+  path: '/menu',
+  getParentRoute: () => ProtectedRoute,
+} as any)
 const ProtectedauthProfileIndexRoute =
   ProtectedauthProfileIndexRouteImport.update({
     id: '/(auth)/profile/',
@@ -129,9 +135,9 @@ const ProtectedauthProfileIndexRoute =
     getParentRoute: () => ProtectedRoute,
   } as any)
 const ProtectedappMenuIndexRoute = ProtectedappMenuIndexRouteImport.update({
-  id: '/(app)/menu/',
-  path: '/menu/',
-  getParentRoute: () => ProtectedRoute,
+  id: '/',
+  path: '/',
+  getParentRoute: () => ProtectedappMenuRouteRoute,
 } as any)
 const ProtectedMastersOrganizationLayoutRoute =
   ProtectedMastersOrganizationLayoutRouteImport.update({
@@ -264,6 +270,7 @@ export interface FileRoutesByFullPath {
   '/sign-up': typeof GuestSignUpRoute
   '/api/test': typeof ApiTestRoute
   '/forgot-password': typeof GuestForgotPasswordLazyRoute
+  '/menu': typeof ProtectedappMenuRouteRouteWithChildren
   '/change-password': typeof ProtectedauthChangePasswordRoute
   '/dashboard/': typeof ProtectedDashboardIndexRoute
   '/document/': typeof ProtectedDocumentIndexRoute
@@ -332,6 +339,7 @@ export interface FileRoutesById {
   '/_guest/sign-up': typeof GuestSignUpRoute
   '/api/test': typeof ApiTestRoute
   '/_guest/forgot-password': typeof GuestForgotPasswordLazyRoute
+  '/_protected/(app)/menu': typeof ProtectedappMenuRouteRouteWithChildren
   '/_protected/(auth)/change-password': typeof ProtectedauthChangePasswordRoute
   '/_protected/dashboard/': typeof ProtectedDashboardIndexRoute
   '/_protected/document/': typeof ProtectedDocumentIndexRoute
@@ -370,6 +378,7 @@ export interface FileRouteTypes {
     | '/sign-up'
     | '/api/test'
     | '/forgot-password'
+    | '/menu'
     | '/change-password'
     | '/dashboard/'
     | '/document/'
@@ -437,6 +446,7 @@ export interface FileRouteTypes {
     | '/_guest/sign-up'
     | '/api/test'
     | '/_guest/forgot-password'
+    | '/_protected/(app)/menu'
     | '/_protected/(auth)/change-password'
     | '/_protected/dashboard/'
     | '/_protected/document/'
@@ -573,6 +583,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ProtectedauthChangePasswordRouteImport
       parentRoute: typeof ProtectedRoute
     }
+    '/_protected/(app)/menu': {
+      id: '/_protected/(app)/menu'
+      path: '/menu'
+      fullPath: '/menu'
+      preLoaderRoute: typeof ProtectedappMenuRouteRouteImport
+      parentRoute: typeof ProtectedRoute
+    }
     '/_protected/(auth)/profile/': {
       id: '/_protected/(auth)/profile/'
       path: '/profile'
@@ -582,10 +599,10 @@ declare module '@tanstack/react-router' {
     }
     '/_protected/(app)/menu/': {
       id: '/_protected/(app)/menu/'
-      path: '/menu'
+      path: '/'
       fullPath: '/menu/'
       preLoaderRoute: typeof ProtectedappMenuIndexRouteImport
-      parentRoute: typeof ProtectedRoute
+      parentRoute: typeof ProtectedappMenuRouteRoute
     }
     '/_protected/masters/organization/_layout': {
       id: '/_protected/masters/organization/_layout'
@@ -748,6 +765,19 @@ const GuestRouteChildren: GuestRouteChildren = {
 
 const GuestRouteWithChildren = GuestRoute._addFileChildren(GuestRouteChildren)
 
+interface ProtectedappMenuRouteRouteChildren {
+  ProtectedappMenuIndexRoute: typeof ProtectedappMenuIndexRoute
+}
+
+const ProtectedappMenuRouteRouteChildren: ProtectedappMenuRouteRouteChildren = {
+  ProtectedappMenuIndexRoute: ProtectedappMenuIndexRoute,
+}
+
+const ProtectedappMenuRouteRouteWithChildren =
+  ProtectedappMenuRouteRoute._addFileChildren(
+    ProtectedappMenuRouteRouteChildren,
+  )
+
 interface ProtectedauthUserFiscalYearLayoutRouteChildren {
   ProtectedauthUserFiscalYearLayoutIndexRoute: typeof ProtectedauthUserFiscalYearLayoutIndexRoute
 }
@@ -887,6 +917,7 @@ const ProtectedMastersOrganizationLayoutRouteWithChildren =
   )
 
 interface ProtectedRouteChildren {
+  ProtectedappMenuRouteRoute: typeof ProtectedappMenuRouteRouteWithChildren
   ProtectedauthChangePasswordRoute: typeof ProtectedauthChangePasswordRoute
   ProtectedDashboardIndexRoute: typeof ProtectedDashboardIndexRoute
   ProtectedDocumentIndexRoute: typeof ProtectedDocumentIndexRoute
@@ -894,11 +925,11 @@ interface ProtectedRouteChildren {
   ProtectedUserIndexRoute: typeof ProtectedUserIndexRoute
   ProtectedauthUserFiscalYearLayoutRoute: typeof ProtectedauthUserFiscalYearLayoutRouteWithChildren
   ProtectedMastersOrganizationLayoutRoute: typeof ProtectedMastersOrganizationLayoutRouteWithChildren
-  ProtectedappMenuIndexRoute: typeof ProtectedappMenuIndexRoute
   ProtectedauthProfileIndexRoute: typeof ProtectedauthProfileIndexRoute
 }
 
 const ProtectedRouteChildren: ProtectedRouteChildren = {
+  ProtectedappMenuRouteRoute: ProtectedappMenuRouteRouteWithChildren,
   ProtectedauthChangePasswordRoute: ProtectedauthChangePasswordRoute,
   ProtectedDashboardIndexRoute: ProtectedDashboardIndexRoute,
   ProtectedDocumentIndexRoute: ProtectedDocumentIndexRoute,
@@ -908,7 +939,6 @@ const ProtectedRouteChildren: ProtectedRouteChildren = {
     ProtectedauthUserFiscalYearLayoutRouteWithChildren,
   ProtectedMastersOrganizationLayoutRoute:
     ProtectedMastersOrganizationLayoutRouteWithChildren,
-  ProtectedappMenuIndexRoute: ProtectedappMenuIndexRoute,
   ProtectedauthProfileIndexRoute: ProtectedauthProfileIndexRoute,
 }
 

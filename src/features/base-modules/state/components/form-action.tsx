@@ -9,7 +9,7 @@ import {
 import FormInputField from '@/components/form-input-field'
 import { Dialog, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from '@/components/ui/dialog'
 import { Route as StateRoute } from '@/routes/_protected/masters/organization/_layout/state/_layout'
-import { lowerCase } from '@/utils/removeEmptyStrings'
+import { lowerCase } from '@/utils/format-utils'
 import { showSubmittedData } from '@/utils/show-submitted-data'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
@@ -17,8 +17,10 @@ import { useNavigate } from '@tanstack/react-router'
 import { Loader2 } from 'lucide-react'
 import { useForm } from 'react-hook-form'
 import { storeStateService, updateStateService } from '../data/api'
-import { formSchema, type State, type StateForm } from '../data/schema'
+import { formSchema   } from '../data/schema'
+import type {State, StateForm} from '../data/schema';
 import CountryDropdown from './country-dropdown'
+
 interface Props {
     currentRow?: State
 }

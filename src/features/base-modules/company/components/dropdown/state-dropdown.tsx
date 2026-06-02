@@ -5,7 +5,7 @@
 //     FormLabel,
 //     FormMessage,
 // } from '@/components/ui/form'
-// import { capitalizeAllWords } from '@/utils/removeEmptyStrings'
+// import { capitalizeAllWords } from '@/utils/format-utils'
 // import { useQuery } from '@tanstack/react-query'
 // import type { UseFormReturn } from 'react-hook-form'
 
@@ -73,7 +73,7 @@ import {
     FormLabel,
     FormMessage,
 } from '@/components/ui/form'
-import { capitalizeAllWords } from '@/utils/removeEmptyStrings'
+import { capitalizeAllWords } from '@/utils/format-utils'
 import { useSuspenseQuery } from '@tanstack/react-query'
 import type { UseFormReturn } from 'react-hook-form'
 
@@ -95,7 +95,7 @@ const StateDropdown = (props: Props) => {
 
     const { data: stateList } = useSuspenseQuery(stateQueryOptions())
 
-    //const stateId = form.watch('stateId') as string | number | undefined;; // Watch form value for reactivity
+    // const stateId = form.watch('stateId') as string | number | undefined;; // Watch form value for reactivity
     const handleValueChange = (value: string) => {
         form.setValue('address.stateId', Number(value))
     }

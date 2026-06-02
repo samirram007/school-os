@@ -9,7 +9,8 @@ import { columns } from './components/columns'
 import { Dialogs } from './components/dialogs'
 import { GridTable } from './components/grid-table'
 import { PrimaryButtons } from './components/primary-buttons'
-import { fiscalYearListSchema, type FiscalYearList, } from './data/schema'
+import { fiscalYearListSchema  } from './data/schema'
+import type {FiscalYearList} from './data/schema';
 
 
 // Import the correct type for fiscalyearListSchema

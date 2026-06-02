@@ -18,7 +18,7 @@ import {
     PopoverTrigger,
 } from "@/components/ui/popover"
 import { cn } from "@/lib/utils"
-import { capitalizeAllWords } from "@/utils/removeEmptyStrings"
+import { capitalizeAllWords } from "@/utils/format-utils"
 import type { UseFormReturn } from "react-hook-form"
 
 
@@ -60,7 +60,7 @@ export const AppModuleCombobox = ({ form, appModules }: Props) => {
         // form.setValue("party", partyLedgers.find((party) => party.id === Number(value)))
         const appModule = appModules.find((appModule) => appModule.id === Number(value))
         form.setValue("appModule", appModule)
-        form.setValue("appModuleId", appModule?.id!)
+        form.setValue("appModuleId", appModule?.id)
         setValue(value)
         setOpen(false)
     }

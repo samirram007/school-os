@@ -9,6 +9,7 @@ import type { Country } from '@/features/base-modules/country/data/schema'
 
 import { DataTableColumnHeader } from '../../../global/components/data-table/data-table-column-header'
 import RowActions from './row-actions'
+
 export const columns: ColumnDef<Country>[] = [
   {
     id: 'select',

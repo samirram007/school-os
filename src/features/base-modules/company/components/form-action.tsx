@@ -12,16 +12,18 @@ import {
     DialogTitle,
 } from '@/components/ui/dialog'
 import { Route as CompanyRoute } from '@/routes/_protected/masters/organization/_layout/company/_layout'
-import { lowerCase } from '@/utils/removeEmptyStrings'
+import { lowerCase } from '@/utils/format-utils'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useNavigate } from '@tanstack/react-router'
 import { Loader2 } from 'lucide-react'
 import { useForm } from 'react-hook-form'
 import { useCompanyMutation } from '../data/queryOptions'
-import { formSchema, type Company, type CompanyForm } from '../data/schema'
+import { formSchema   } from '../data/schema'
+import type {Company, CompanyForm} from '../data/schema';
 import CompanyTypeDropdown from './dropdown/company_type-dropdown'
 import CurrencyDropdown from './dropdown/currency-dropdown'
 import AddressForm from '../sub-components/address-form'
+
 interface Props {
     currentRow?: Company
 }

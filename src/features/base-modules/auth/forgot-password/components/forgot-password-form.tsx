@@ -10,7 +10,8 @@ import {
 import { Input } from '@/components/ui/input'
 import { cn } from '@/lib/utils'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { type HTMLAttributes, useState } from 'react'
+import {  useState } from 'react'
+import type {HTMLAttributes} from 'react';
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 
@@ -33,7 +34,7 @@ export function ForgotForm({ className, ...props }: ForgotFormProps) {
 
   function onSubmit(data: z.infer<typeof formSchema>) {
     setIsLoading(true)
-    // eslint-disable-next-line no-console
+     
     console.log(data)
 
     setTimeout(() => {

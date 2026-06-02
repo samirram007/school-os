@@ -1,6 +1,6 @@
 import { Badge } from '@/components/ui/badge';
 import { cn } from '@/lib/utils';
-import { capitalizeAllWords, capitalizeWords, lowerCase } from "@/utils/removeEmptyStrings";
+import { capitalizeAllWords, capitalizeWords, lowerCase } from "@/utils/format-utils";
 import { Check, ChevronsUpDown } from 'lucide-react';
 import { useState } from 'react';
 import type { Control, UseFormReturn } from "react-hook-form";
@@ -34,7 +34,7 @@ type Props = {
 const FormInputField = (props: Props) => {
     const { type } = props
 
-    //switch case for different input types
+    // switch case for different input types
     if (type === 'checkbox') {
         return <CheckBox {...props} />
     }

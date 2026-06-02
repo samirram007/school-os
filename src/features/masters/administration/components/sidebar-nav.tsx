@@ -9,7 +9,8 @@ import {
 } from '@/components/ui/select'
 import { cn } from '@/lib/utils'
 import { Link, useLocation, useNavigate } from '@tanstack/react-router'
-import { useState, type JSX } from 'react'
+import { useState  } from 'react'
+import type {JSX} from 'react';
 
 interface SidebarNavProps extends React.HTMLAttributes<HTMLElement> {
   items: {

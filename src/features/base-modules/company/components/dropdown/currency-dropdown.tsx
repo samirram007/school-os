@@ -1,6 +1,6 @@
 import { SelectDropdown } from "@/components/select-dropdown";
 import { FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
-import { capitalizeAllWords } from "@/utils/removeEmptyStrings";
+import { capitalizeAllWords } from "@/utils/format-utils";
 import { useQuery } from "@tanstack/react-query";
 import type { UseFormReturn } from "react-hook-form";
 
@@ -23,7 +23,7 @@ const CurrencyDropdown = (props: Props) => {
         queryFn: fetchCurrencyService,
     });
 
-    //const currencyId = form.watch('currencyId') as string | number | undefined;; // Watch form value for reactivity
+    // const currencyId = form.watch('currencyId') as string | number | undefined;; // Watch form value for reactivity
     const handleValueChange = (value: string) => {
         form.setValue('currencyId', Number(value));
 

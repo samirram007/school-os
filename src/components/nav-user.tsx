@@ -27,9 +27,10 @@ import {
   SidebarMenuItem,
   useSidebar,
 } from "#/components/ui/sidebar"
+import { useAuth } from "#/features/base-modules/auth/contexts/auth-context"
 
 export function NavUser({
-  user,
+  user: _user, // fallback or initial data
 }: {
   user: {
     name: string
@@ -38,6 +39,13 @@ export function NavUser({
   }
 }) {
   const { isMobile } = useSidebar()
+  const { user: authUser, logout } = useAuth()
+
+  const displayUser = {
+    name: authUser?.name || _user.name,
+    email: authUser?.email || _user.email,
+    avatar: _user.avatar
+  }
 
   return (
     <SidebarMenu>
@@ -49,12 +57,14 @@ export function NavUser({
               className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
             >
               <Avatar className="h-8 w-8 rounded-lg">
-                <AvatarImage src={user.avatar} alt={user.name} />
-                <AvatarFallback className="rounded-lg">CN</AvatarFallback>
+                <AvatarImage src={displayUser.avatar} alt={displayUser.name} />
+                <AvatarFallback className="rounded-lg">
+                  {displayUser.name?.charAt(0) || 'U'}
+                </AvatarFallback>
               </Avatar>
               <div className="grid flex-1 text-left text-sm leading-tight">
-                <span className="truncate font-medium">{user.name}</span>
-                <span className="truncate text-xs">{user.email}</span>
+                <span className="truncate font-medium">{displayUser.name}</span>
+                <span className="truncate text-xs">{displayUser.email}</span>
               </div>
               <ChevronsUpDown className="ml-auto size-4" />
             </SidebarMenuButton>
@@ -68,12 +78,14 @@ export function NavUser({
             <DropdownMenuLabel className="p-0 font-normal">
               <div className="flex items-center gap-2 px-1 py-1.5 text-left text-sm">
                 <Avatar className="h-8 w-8 rounded-lg">
-                  <AvatarImage src={user.avatar} alt={user.name} />
-                  <AvatarFallback className="rounded-lg">CN</AvatarFallback>
+                  <AvatarImage src={displayUser.avatar} alt={displayUser.name} />
+                  <AvatarFallback className="rounded-lg">
+                    {displayUser.name?.charAt(0) || 'U'}
+                  </AvatarFallback>
                 </Avatar>
                 <div className="grid flex-1 text-left text-sm leading-tight">
-                  <span className="truncate font-medium">{user.name}</span>
-                  <span className="truncate text-xs">{user.email}</span>
+                  <span className="truncate font-medium">{displayUser.name}</span>
+                  <span className="truncate text-xs">{displayUser.email}</span>
                 </div>
               </div>
             </DropdownMenuLabel>
@@ -100,7 +112,7 @@ export function NavUser({
               </DropdownMenuItem>
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
-            <DropdownMenuItem>
+            <DropdownMenuItem onClick={() => logout()}>
               <LogOut />
               Log out
             </DropdownMenuItem>

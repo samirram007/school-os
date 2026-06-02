@@ -11,6 +11,7 @@ import type { Currency } from '@/features/modules/currency/data/schema'
 import { ActiveInactiveStatusTypes } from '@/types/active-inactive-status'
 import { DataTableColumnHeader } from '../../../global/components/data-table/data-table-column-header'
 import RowActions from './row-actions'
+
 export const columns: ColumnDef<Currency>[] = [
   {
     id: 'select',

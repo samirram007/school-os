@@ -14,7 +14,7 @@ import { useSuspenseQuery } from "@tanstack/react-query"
 import React, { useMemo } from "react"
 import RolePermissionProvider from "./permission/contexts/role_permission-context"
 
-import { type AppModule } from '../../app_module/data/schema';
+import type {AppModule} from '../../app_module/data/schema';
 import RolePermissionDialog from "./permission/dialog_index"
 
 
@@ -48,7 +48,7 @@ export default ActionPermission
 
 const ModalButton = ({ role }: { role: Role }) => {
     const [open, setOpen] = React.useState(false);
-    //console.log(role)
+    // console.log(role)
     return (
         <>
             <Button onClick={() => { setOpen(true) }} className="space-x-1" size={'sm'} variant={'outline'} title='Role Permission'>

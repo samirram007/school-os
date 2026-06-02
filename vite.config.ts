@@ -9,6 +9,7 @@ import tailwindcss from '@tailwindcss/vite'
 import { resolve } from 'node:path'
 
 import tanstackRouter from '@tanstack/router-plugin/vite'
+
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd())
   return {

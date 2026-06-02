@@ -17,7 +17,8 @@ import {
 import { showSubmittedData } from '@/utils/show-submitted-data'
 import { zodResolver } from '@hookform/resolvers/zod'
 
-import { useForm, type Resolver } from 'react-hook-form'
+import { useForm  } from 'react-hook-form'
+import type {Resolver} from 'react-hook-form';
 
 import FormInputField from '@/components/form-input-field'
 
@@ -25,7 +26,8 @@ import { Badge } from '@/components/ui/badge'
 import { Loader2 } from 'lucide-react'
 import { useEffect, useMemo } from 'react'
 import { useAppModuleFeatureMutation } from '../data/queryOptions'
-import { formSchema, type AppModuleFeature } from '../data/schema'
+import { formSchema  } from '../data/schema'
+import type {AppModuleFeature} from '../data/schema';
 import type { AppModuleFeatureForm } from '../types/types'
 import AppModuleForm from './dropdown/app_module-form'
 

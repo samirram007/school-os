@@ -7,7 +7,7 @@ export const Route = createFileRoute(
 )({
 
   component: () => {
-    //const { data: currency } = useSuspenseQuery(currencyQueryOptions())
+    // const { data: currency } = useSuspenseQuery(currencyQueryOptions())
     return (
       <CurrencyProvider>
         <Outlet />

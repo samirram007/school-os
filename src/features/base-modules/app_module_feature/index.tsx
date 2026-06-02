@@ -12,7 +12,8 @@ import { Dialogs } from './components/dialogs'
 import { GridTable } from './components/grid-table'
 import { PrimaryButtons } from './components/primary-buttons'
 import AppModuleFeatureProvider from './contexts/app_module_feature-context'
-import { appModuleFeatureListSchema, type AppModuleFeatureList } from './data/schema'
+import { appModuleFeatureListSchema  } from './data/schema'
+import type {AppModuleFeatureList} from './data/schema';
 
 
 

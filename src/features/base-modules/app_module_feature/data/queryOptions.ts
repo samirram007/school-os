@@ -2,6 +2,7 @@ import { queryOptions, useMutation, useQueryClient } from "@tanstack/react-query
 import type { AppModuleFeatureForm } from "../types/types"
 import { deleteAppModuleFeatureService, fetchAppModuleFeatureByIdService, fetchAppModuleFeatureService, storeAppModuleFeatureService, updateAppModuleFeatureService } from "./api"
 import { getData } from "@/utils/dataClient"
+
 const Key = "AppModuleFeatures"
 const BASE_KEY = "AppModuleFeatures"
 

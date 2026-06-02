@@ -9,7 +9,8 @@ import { columns } from './components/columns'
 import { Dialogs } from './components/dialogs'
 import { GridTable } from './components/grid-table'
 import { PrimaryButtons } from './components/primary-buttons'
-import { userListSchema, type UserList } from './data/schema'
+import { userListSchema  } from './data/schema'
+import type {UserList} from './data/schema';
 import type { RoleList } from '../role/data/schema'
 import { Main } from '#/layouts/protected/components/main'
 

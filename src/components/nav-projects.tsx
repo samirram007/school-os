@@ -4,9 +4,10 @@ import {
   Folder,
   Forward,
   MoreHorizontal,
-  Trash2,
-  type LucideIcon,
+  Trash2
+  
 } from "lucide-react"
+import type {LucideIcon} from "lucide-react";
 
 import {
   DropdownMenu,

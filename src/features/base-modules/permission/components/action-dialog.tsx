@@ -16,14 +16,16 @@ import {
 
 import { zodResolver } from '@hookform/resolvers/zod'
 
-import { useForm, type Resolver } from 'react-hook-form'
+import { useForm  } from 'react-hook-form'
+import type {Resolver} from 'react-hook-form';
 import { lowerCase } from '../../../../utils/removeEmptyStrings'
 
 import FormInputField from '@/components/form-input-field'
 import { showSubmittedData } from '@/utils/show-submitted-data'
 import { Loader2 } from 'lucide-react'
 import { usePermissionMutation } from '../data/queryOptions'
-import { formSchema, type Permission, type PermissionForm } from '../data/schema'
+import { formSchema   } from '../data/schema'
+import type {Permission, PermissionForm} from '../data/schema';
 import AppModuleFetureDropdown from './app_module_feature-dropdown'
 import RoleDropdown from './role-dropdown'
 

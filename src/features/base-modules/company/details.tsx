@@ -6,7 +6,7 @@ import { Main } from '@/layouts/components/main'
 
 
 import { ActionPages } from './components/action-page'
-import { type Company } from './data/schema'
+import type {Company} from './data/schema';
 
 
 // Import the correct type for companyListSchema

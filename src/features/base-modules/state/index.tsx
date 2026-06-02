@@ -9,7 +9,8 @@ import { columns } from './components/columns'
 import { Dialogs } from './components/dialogs'
 import { GridTable } from './components/grid-table'
 import { PrimaryButtons } from './components/primary-buttons'
-import { stateListSchema, type StateList } from './data/schema'
+import { stateListSchema  } from './data/schema'
+import type {StateList} from './data/schema';
 
 
 // Import the correct type for stateListSchema

@@ -1,6 +1,7 @@
 import { queryOptions, useMutation, useQueryClient } from "@tanstack/react-query"
 import type { AppModuleForm } from "../types/types"
 import { fetchAppModuleService, storeAppModuleService, updateAppModuleService } from "./api"
+
 const Key = "AppModules"
 export const appModuleQueryOptions = (key: string = Key) => {
     return queryOptions({

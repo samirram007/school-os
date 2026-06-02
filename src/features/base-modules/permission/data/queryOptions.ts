@@ -1,7 +1,7 @@
 import { queryOptions, useMutation, useQueryClient } from "@tanstack/react-query"
 import { fetchPermissionService, storePermissionService, updatePermissionService } from "./api"
 import type { PermissionForm } from "./schema"
-//queryOptions.ts
+// queryOptions.ts
 const Key = "permissions"
 export const permissionQueryOptions = (key: string = Key) => {
     return queryOptions({

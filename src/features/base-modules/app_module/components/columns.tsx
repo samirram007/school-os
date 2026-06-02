@@ -98,7 +98,7 @@ export const columns: ColumnDef<AppModule>[] = [
       <DataTableColumnHeader column={column} title='Features' />
     ),
     cell: ({ row }) => {
-      const features = row.getValue('features') as AppModuleFeature[] | undefined
+      const features = row.getValue('features')
       return (
         <div className='flex flex-wrap gap-2'>
           <AppModuleFeatureAddButton currentRow={row.original} />

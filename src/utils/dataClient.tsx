@@ -2,9 +2,10 @@ import { toast } from "sonner";
 
 
 import axiosClient from "@/utils/axios-client";
-import { removeEmptyStrings } from "./removeEmptyStrings";
+import { cleanObject } from "./format-utils";
+ 
 
-// import { removeEmptyStrings } from "./removeEmptyStrings";
+// import { removeEmptyStrings } from "./format-utils";
 
 export const getData = async (apiPath: string) => {
     return await axiosClient.get(apiPath)
@@ -19,7 +20,7 @@ export const getData = async (apiPath: string) => {
 }
 export const postData = async (apiPath: string, payload: object) => {
     // console.log(apiPath, removeEmptyStrings(payload))
-    return await axiosClient.post(apiPath, removeEmptyStrings(payload))
+    return await axiosClient.post(apiPath, cleanObject(payload))
         .then(response => {
             successHandler(response)
             return response.data;
@@ -27,20 +28,19 @@ export const postData = async (apiPath: string, payload: object) => {
         .catch((err) => {
             // console.log("Error", err)
             errorHandler(err)
-            // throw err
-
+            throw err
         })
 }
 export const putData = async (apiPath: string, payload: object) => {
-    console.log(apiPath, removeEmptyStrings(payload))
-    return await axiosClient.put(apiPath, removeEmptyStrings(payload))
+    console.log(apiPath, cleanObject(payload))
+    return await axiosClient.put(apiPath, cleanObject(payload))
         .then(response => {
             successHandler(response)
             return response.data;
         })
         .catch((err) => {
             errorHandler(err)
-            //  throw err
+            throw err
         })
 }
 export const deleteData = async (apiPath: string) => {
@@ -56,10 +56,22 @@ export const deleteData = async (apiPath: string) => {
 }
 
 const successHandler = (response: any) => {
-    toast.message(response?.data.message)
+    const message = response?.data?.message || 'Operation successful';
+    toast.success(message);
 }
 
 const errorHandler = (error: any) => {
+    // Suppress toast for 401 Unauthenticated/No token errors,
+    // especially common at startup when checking session.
+    if (
+        error.response?.status === 401 &&
+        error.response?.data?.message &&
+        (error.response.data.message.includes('Unauthenticated') ||
+            error.response.data.message.includes('No token provided'))
+    ) {
+        return
+    }
+
     // Check if the error is from a response with data (usually API error responses)
     // console.log("ResponseError", error);
 
@@ -80,19 +92,19 @@ const errorHandler = (error: any) => {
                     if (errorMessage.includes("Session expired")) {
                         errorMessage = "Your session has expired. Please log in again.";
                     }
-                    toast.message(`${errorMessage}`);
+                    toast.error(`${errorMessage}`);
                 });
             });
         } else if (error.response.data.message) {
             // If there's a general message (e.g., non-validation error)
-            //toast.message(error.response.data.message);
+            toast.error(error.response.data.message);
 
         } else {
             // Fallback for unexpected error responses
-            toast.message('An unexpected error occurred.');
+            toast.error('An unexpected error occurred.');
         }
     } else {
         // Handle other error types, such as network errors or timeout errors
-        toast.message('Network or server error occurred.');
+        toast.error('Network or server error occurred.');
     }
 };

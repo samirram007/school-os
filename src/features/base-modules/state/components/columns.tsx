@@ -11,6 +11,7 @@ import type { ColumnDef } from '@tanstack/react-table'
 import { DataTableColumnHeader } from '../../../global/components/data-table/data-table-column-header'
 import type { State } from '../data/schema'
 import RowActions from './row-actions'
+
 export const columns: ColumnDef<State>[] = [
   {
     id: 'select',

@@ -1,6 +1,6 @@
 import { SelectDropdown } from "@/components/select-dropdown";
 import { FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
-import { capitalizeAllWords } from "@/utils/removeEmptyStrings";
+import { capitalizeAllWords } from "@/utils/format-utils";
 import { useSuspenseQuery } from "@tanstack/react-query";
 import type { UseFormReturn } from "react-hook-form";
 
@@ -25,7 +25,7 @@ const CountryDropdown = (props: Props) => {
 
     const { data: countryList, isLoading } = useSuspenseQuery(countryQueryOptions());
 
-    //const countryId = form.watch('countryId') as string | number | undefined;; // Watch form value for reactivity
+    // const countryId = form.watch('countryId') as string | number | undefined;; // Watch form value for reactivity
     const handleValueChange = (value: string) => {
         form.setValue('address.countryId', Number(value));
 

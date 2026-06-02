@@ -10,6 +10,7 @@ import type { Company } from '@/features/base-modules/company/data/schema'
 
 import { DataTableColumnHeader } from '../../../global/components/data-table/data-table-column-header'
 import RowActions from './row-actions'
+
 export const columns: ColumnDef<Company>[] = [
   {
     id: 'select',

@@ -9,6 +9,7 @@ import type { ColumnDef, FilterFn, Row } from '@tanstack/react-table'
 import { DataTableColumnHeader } from '../../../global/components/data-table/data-table-column-header'
 import type { Permission } from '../data/schema'
 import RowActions from './row-actions'
+
 declare module '@tanstack/table-core' {
   interface FilterFns {
     fuzzy: FilterFn<any>

@@ -1,5 +1,6 @@
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
+import { HelmetProvider } from 'react-helmet-async';
 
 
 import { AuthProvider } from './features/base-modules/auth/contexts/auth-context';
@@ -19,15 +20,17 @@ if (rootElement && !rootElement.innerHTML) {
   const root = createRoot(rootElement)
   root.render(
     <StrictMode>
-      <TanStackQueryProvider>
-        <ThemeContextProvider defaultTheme="light" storageKey="vite-ui-theme">
+      <HelmetProvider>
+        <TanStackQueryProvider>
+          <ThemeContextProvider defaultTheme="light" storageKey="vite-ui-theme">
 
-          <AuthProvider>
-            <Toaster position="bottom-right" richColors />
-            <AppRouter />
-          </AuthProvider>
-        </ThemeContextProvider>
-      </TanStackQueryProvider>
+            <AuthProvider>
+              <Toaster position="bottom-right" richColors />
+              <AppRouter />
+            </AuthProvider>
+          </ThemeContextProvider>
+        </TanStackQueryProvider>
+      </HelmetProvider>
     </StrictMode>
   );
 

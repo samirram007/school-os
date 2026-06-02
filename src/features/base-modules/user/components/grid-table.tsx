@@ -17,19 +17,20 @@ import {
   getFilteredRowModel,
   getPaginationRowModel,
   getSortedRowModel,
-  useReactTable,
-  type ColumnDef,
-  type ColumnFiltersState,
-  type RowData,
-  type SortingState,
-  type VisibilityState,
+  useReactTable
+  
+  
+  
+  
+  
 } from '@tanstack/react-table'
+import type {ColumnDef, ColumnFiltersState, RowData, SortingState, VisibilityState} from '@tanstack/react-table';
 import { useState } from 'react'
 import type { User } from '../data/schema'
 
 
 declare module '@tanstack/react-table' {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+   
   interface ColumnMeta<TData extends RowData, TValue> {
     className: string
   }

@@ -4,6 +4,7 @@ import { useSuspenseQuery } from '@tanstack/react-query'
 import { createFileRoute } from '@tanstack/react-router'
 import { Loader } from 'lucide-react'
 import React, { Suspense } from 'react'
+
 const Currency = React.lazy(() =>
   import('@/features/base-modules/currency')
 )

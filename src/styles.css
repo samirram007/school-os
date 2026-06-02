@@ -392,6 +392,21 @@ a {
   border-image: linear-gradient(to right, var(--color-pink-500), var(--color-blue-600)) 1;
 }
 
+@keyframes scale-in {
+  from {
+    opacity: 0;
+    transform: scale(0);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.scale-in {
+  animation: scale-in 0.2s ease-out;
+}
+
 .bg-folder{
   background: linear-gradient(135deg, var(--chart-4) 0%, var(--chart-5) 100%);
 }

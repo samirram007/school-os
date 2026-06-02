@@ -24,7 +24,8 @@ import FormInputField from '@/components/form-input-field'
 import { Loader2 } from 'lucide-react'
 import { useEffect, useMemo } from 'react'
 import { useAppModuleMutation } from '../data/queryOptions'
-import { formSchema, type AppModule } from '../data/schema'
+import { formSchema  } from '../data/schema'
+import type {AppModule} from '../data/schema';
 import type { AppModuleForm } from '../types/types'
 
 

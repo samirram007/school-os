@@ -1,4 +1,3 @@
-import { FormControl } from '@/components/ui/form'
 import { Button } from '@/components/ui/button'
 import {
   Command,
@@ -52,8 +51,7 @@ export function SelectDropdown({
 
   return (
     <Sheet open={open} onOpenChange={setOpen}>
-      <FormControl>
-        <SheetTrigger asChild>
+      <SheetTrigger asChild>
           <Button
             type='button'
             variant='outline'
@@ -68,7 +66,6 @@ export function SelectDropdown({
             <ChevronsUpDownIcon className='ml-2 h-4 w-4 shrink-0 opacity-50' />
           </Button>
         </SheetTrigger>
-      </FormControl>
 
       <SheetContent side='right' className='p-0 sm:max-w-md'>
         <SheetHeader>

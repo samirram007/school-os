@@ -11,7 +11,8 @@ import { Dialogs } from './components/dialogs'
 import { GridTable } from './components/grid-table'
 import { PrimaryButtons } from './components/primary-buttons'
 import PermissionProvider from './contexts/permission-context'
-import { permissionListSchema, type PermissionList } from './data/schema'
+import { permissionListSchema  } from './data/schema'
+import type {PermissionList} from './data/schema';
 
 
 // Import the correct type for permissionListSchema

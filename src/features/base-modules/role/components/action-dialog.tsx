@@ -22,7 +22,8 @@ import { lowerCase } from '../../../../utils/removeEmptyStrings'
 
 import { Loader2 } from 'lucide-react'
 import { useRoleMutation } from '../data/queryOptions'
-import { formSchema, type Role, type RoleForm } from '../data/schema'
+import { formSchema   } from '../data/schema'
+import type {Role, RoleForm} from '../data/schema';
 
 
 interface Props {
@@ -53,7 +54,7 @@ export function ActionDialog({ currentRow, open, onOpenChange }: Props) {
   const moduleName = "Role"
   const onSubmit = (values: RoleForm) => {
     form.reset()
-    //showSubmittedData(values)
+    // showSubmittedData(values)
     saveRole(
       currentRow ? { ...values, id: currentRow.id } : values
     )

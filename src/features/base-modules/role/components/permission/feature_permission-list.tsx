@@ -4,6 +4,7 @@ import type { AppModuleFeature } from "@/features/base-modules/app_module_featur
 import type { RolePermission } from "@/features/base-modules/permission/data/schema"
 
 import { PermissionDropDown } from "./permission-dropdown"
+
 interface RolePermissionProps {
     data?: AppModuleFeature[],
     roleId?: number,

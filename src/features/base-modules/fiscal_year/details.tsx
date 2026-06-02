@@ -6,7 +6,7 @@ import { Main } from '@/layouts/components/main'
 
 
 import { ActionPages } from './components/action-page'
-import { type FiscalYear } from './data/schema'
+import type {FiscalYear} from './data/schema';
 
 
 // Import the correct type for fiscalyearListSchema

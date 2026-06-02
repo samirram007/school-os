@@ -11,7 +11,8 @@ import { useEffect } from 'react'
 import { Dialogs } from './components/dialogs'
 import { GridTable } from './components/grid-table'
 import { PrimaryButtons } from './components/primary-buttons'
-import { roleListSchema, type RoleList } from './data/schema'
+import { roleListSchema  } from './data/schema'
+import type {RoleList} from './data/schema';
 
 
 // Import the correct type for roleListSchema

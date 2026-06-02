@@ -9,7 +9,8 @@ import { columns } from './components/columns'
 import { Dialogs } from './components/dialogs'
 import { GridTable } from './components/grid-table'
 import { PrimaryButtons } from './components/primary-buttons'
-import { currencyListSchema, type CurrencyList } from './data/schema'
+import { currencyListSchema  } from './data/schema'
+import type {CurrencyList} from './data/schema';
 
 
 // Import the correct type for currencyListSchema

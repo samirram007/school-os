@@ -9,7 +9,8 @@ import { columns } from './components/columns'
 import { Dialogs } from './components/dialogs'
 import { GridTable } from './components/grid-table'
 import { PrimaryButtons } from './components/primary-buttons'
-import { companyListSchema, type CompanyList } from './data/schema'
+import { companyListSchema  } from './data/schema'
+import type {CompanyList} from './data/schema';
 
 
 // Import the correct type for companyListSchema

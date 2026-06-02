@@ -1,5 +1,5 @@
 
-import { capitalizeAllWords } from "@/utils/removeEmptyStrings";
+import { capitalizeAllWords } from "@/utils/format-utils";
 import { useQuery } from "@tanstack/react-query";
 import type { UseFormReturn } from "react-hook-form";
 
@@ -15,7 +15,7 @@ type Props = {
     form: UseFormReturn<AppModuleFeatureForm>;
 };
 const AppModuleDropdown = (props: Props) => {
-    const { form } = props as Props;
+    const { form } = props;
     const { data: AppModuleList, isLoading } = useQuery(appModuleQueryOptions());
 
 

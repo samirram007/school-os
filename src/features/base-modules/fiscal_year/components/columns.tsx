@@ -10,6 +10,7 @@ import type { FiscalYear } from '@/features/base-modules/fiscal_year/data/schema
 
 import { DataTableColumnHeader } from '../../../global/components/data-table/data-table-column-header'
 import RowActions from './row-actions'
+
 export const columns: ColumnDef<FiscalYear>[] = [
   {
     id: 'select',
@@ -87,7 +88,7 @@ export const columns: ColumnDef<FiscalYear>[] = [
       <DataTableColumnHeader column={column} title='Status' />
     ),
     cell: ({ row }) => {
-      const status = row.getValue('status') as string
+      const status = row.getValue('status')
       return status === 'active' ? (
         <Badge variant='default'>Active</Badge>
       ) : (

@@ -7,6 +7,7 @@ import type { Role } from "../../data/schema"
 import { useRolePermission } from "./contexts/role_permission-context"
 
 import { Route as RoleModuleFeatureRoute } from '@/routes/_protected/administration/_layout/role/_layout/$id/_module/$moduleid'
+
 interface ModuleProps {
     modules?: AppModule[]
     role?: Role

@@ -9,13 +9,15 @@ import {
 import FormInputField from '@/components/form-input-field'
 import { Dialog, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from '@/components/ui/dialog'
 import { Route as UserRoute } from '@/routes/_protected/administration/_layout/user/_layout'
-import { lowerCase } from '@/utils/removeEmptyStrings'
+import { lowerCase } from '@/utils/format-utils'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useNavigate } from '@tanstack/react-router'
 import { Loader2 } from 'lucide-react'
-import { useForm, type Resolver } from 'react-hook-form'
+import { useForm  } from 'react-hook-form'
+import type {Resolver} from 'react-hook-form';
 import { useUserMutation } from '../data/queryOptions'
-import { formSchema, type User, type UserForm } from '../data/schema';
+import { formSchema   } from '../data/schema';
+import type {User, UserForm} from '../data/schema';
 
 interface Props {
     currentRow?: User
@@ -53,7 +55,7 @@ export function FormAction({ currentRow }: Props) {
         console.log("here: ", values)
         form.reset()
         saveUser(
-            currentRow ? { ...values, id: currentRow.id! } : values,
+            currentRow ? { ...values, id: currentRow.id } : values,
             {
                 onSuccess: () => {
                     navigate({ to: UserRoute.to, })

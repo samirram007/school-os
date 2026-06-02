@@ -1,6 +1,6 @@
 import { SelectDropdown } from "@/components/select-dropdown";
 import { FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
-import { capitalizeAllWords } from "@/utils/removeEmptyStrings";
+import { capitalizeAllWords } from "@/utils/format-utils";
 import { useQuery } from "@tanstack/react-query";
 import type { UseFormReturn } from "react-hook-form";
 import { fetchCompanyTypeService } from "../../../company_type/data/api";
@@ -21,7 +21,7 @@ const CompanyTypeDropdown = (props: Props) => {
         queryFn: fetchCompanyTypeService,
     });
 
-    //const companyTypeId = form.watch('companyTypeId') as string | number | undefined;; // Watch form value for reactivity
+    // const companyTypeId = form.watch('companyTypeId') as string | number | undefined;; // Watch form value for reactivity
     const handleValueChange = (value: string) => {
         form.setValue('companyTypeId', Number(value));
 

@@ -21,7 +21,7 @@ const FolderComponent = ({
 
     const handleClick = (e: React.MouseEvent) => {
         e.stopPropagation();
-        //alert(document)
+        // alert(document)
         setCurrentFolder(document);
 
     }
